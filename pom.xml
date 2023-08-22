@@ -35,6 +35,7 @@
         <module>domain</module>
         <module>bootstrap</module>
         <module>sentinel</module>
+        <module>esl</module>
     </modules>
 
     <dependencies>
@@ -65,12 +66,17 @@
             <dependency>
                 <groupId>com.kbslan</groupId>
                 <artifactId>domain</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kbslan</groupId>
                 <artifactId>sentinel</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kbslan</groupId>
+                <artifactId>esl</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <!--mybatis-plus-->
             <dependency>
