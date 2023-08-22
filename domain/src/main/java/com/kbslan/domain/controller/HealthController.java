@@ -1,4 +1,4 @@
-package com.kbslan.sentinel;
+package com.kbslan.domain.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
