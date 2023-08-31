@@ -1,7 +1,7 @@
 package com.kbslan.domain.mapper;
 
-import com.kbslan.domain.entity.SysConfig;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kbslan.domain.entity.SysConfig;
 
 /**
  * <p>

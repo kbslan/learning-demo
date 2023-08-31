@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author chao.lan
- * @since 2023-08-22
+ * @since 2023-08-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -42,6 +42,11 @@ public class PriceTagInfo implements Serializable {
     private Integer deviceSupplierId;
 
     /**
+     * 设备类型
+     */
+    private String deviceType;
+
+    /**
      * 原始价签ID
      */
     private String originPriceTagId;
@@ -50,6 +55,11 @@ public class PriceTagInfo implements Serializable {
      * 价签ID
      */
     private String priceTagId;
+
+    /**
+     * 绑定来源
+     */
+    private String bingingSource;
 
     /**
      * 价签能量值

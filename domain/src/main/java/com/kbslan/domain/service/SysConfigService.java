@@ -1,7 +1,7 @@
 package com.kbslan.domain.service;
 
-import com.kbslan.domain.entity.SysConfig;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.kbslan.domain.entity.SysConfig;
 
 /**
  * <p>

@@ -1,9 +1,9 @@
 package com.kbslan.domain.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kbslan.domain.entity.SysConfig;
 import com.kbslan.domain.mapper.SysConfigMapper;
 import com.kbslan.domain.service.SysConfigService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

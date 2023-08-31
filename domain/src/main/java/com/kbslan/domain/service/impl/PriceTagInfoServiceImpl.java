@@ -1,9 +1,9 @@
 package com.kbslan.domain.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kbslan.domain.entity.PriceTagInfo;
 import com.kbslan.domain.mapper.PriceTagInfoMapper;
 import com.kbslan.domain.service.PriceTagInfoService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

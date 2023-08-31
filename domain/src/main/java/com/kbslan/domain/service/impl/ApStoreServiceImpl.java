@@ -1,9 +1,9 @@
 package com.kbslan.domain.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kbslan.domain.entity.ApStore;
 import com.kbslan.domain.mapper.ApStoreMapper;
 import com.kbslan.domain.service.ApStoreService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
