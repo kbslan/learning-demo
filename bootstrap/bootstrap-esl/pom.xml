@@ -18,14 +18,6 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.kbslan</groupId>-->
-<!--            <artifactId>sentinel</artifactId>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>com.kbslan</groupId>
-            <artifactId>domain</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.kbslan</groupId>
             <artifactId>esl</artifactId>

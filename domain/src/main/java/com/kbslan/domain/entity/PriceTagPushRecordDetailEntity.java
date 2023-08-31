@@ -2,15 +2,16 @@ package com.kbslan.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * <p>
- * 门店基站
+ * 电子价签推送记录明细
  * </p>
  *
  * @author chao.lan
@@ -19,12 +20,17 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class ApStore implements Serializable {
+public class PriceTagPushRecordDetailEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 批次号
+     */
+    private String sid;
 
     /**
      * 商家ID
@@ -37,29 +43,69 @@ public class ApStore implements Serializable {
     private Long storeId;
 
     /**
-     * 设备厂商 1：汉朔
+     * sku
      */
-    private Integer deviceSupplierId;
+    private Long skuId;
 
     /**
-     * 原始基站id
+     * 物料码
      */
-    private String originApId;
+    private String matnr;
 
     /**
-     * 基站mac
+     * 国条码
      */
-    private String apMac;
+    private String barCode;
 
     /**
-     * 末次心跳时间
+     * 商品名称（多语言）
      */
-    private LocalDateTime lastHeartbeat;
+    private String title;
 
     /**
-     * 1：有效，0：无效
+     * 品牌名称（多语言）
      */
-    private Integer yn;
+    private String brand;
+
+    /**
+     * 原价
+     */
+    private Long retailPrice;
+
+    /**
+     * 促销价
+     */
+    private Long proPrice;
+
+    /**
+     * 促销标签
+     */
+    private String proTag;
+
+    /**
+     * 促销语
+     */
+    private String proSlogan;
+
+    /**
+     * 经营范围
+     */
+    private Integer rangInd;
+
+    /**
+     * 是否可售
+     */
+    private Integer salesFlag;
+
+    /**
+     * 商品状态
+     */
+    private Integer itemStatus;
+
+    /**
+     * 扩展属性
+     */
+    private String extJson;
 
     /**
      * 创建人ID

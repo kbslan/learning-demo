@@ -2,15 +2,16 @@ package com.kbslan.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * <p>
- * 电子价签推送记录明细
+ * 电子价签推送记录
  * </p>
  *
  * @author chao.lan
@@ -19,17 +20,12 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class PriceTagPushRecordDetail implements Serializable {
+public class PriceTagPushRecordEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    /**
-     * 批次号
-     */
-    private String sid;
 
     /**
      * 商家ID
@@ -42,69 +38,34 @@ public class PriceTagPushRecordDetail implements Serializable {
     private Long storeId;
 
     /**
-     * sku
+     * 批次号
      */
-    private Long skuId;
+    private String sid;
 
     /**
-     * 物料码
+     * 推送模式
      */
-    private String matnr;
+    private Integer pushMode;
 
     /**
-     * 国条码
+     * 推送类型
      */
-    private String barCode;
+    private Integer pushType;
 
     /**
-     * 商品名称（多语言）
+     * 触发类型 1：自动， 2：手动，3：补偿
      */
-    private String title;
+    private Integer refreshType;
 
     /**
-     * 品牌名称（多语言）
+     * 状态 0：待下发，1：下发中，2：下发成功，3：下发失败，4：补发成功
      */
-    private String brand;
+    private Integer status;
 
     /**
-     * 原价
+     * 失败原因
      */
-    private Long retailPrice;
-
-    /**
-     * 促销价
-     */
-    private Long proPrice;
-
-    /**
-     * 促销标签
-     */
-    private String proTag;
-
-    /**
-     * 促销语
-     */
-    private String proSlogan;
-
-    /**
-     * 经营范围
-     */
-    private Integer rangInd;
-
-    /**
-     * 是否可售
-     */
-    private Integer salesFlag;
-
-    /**
-     * 商品状态
-     */
-    private Integer itemStatus;
-
-    /**
-     * 扩展属性
-     */
-    private String extJson;
+    private String errorMsg;
 
     /**
      * 创建人ID

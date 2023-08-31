@@ -1,7 +1,7 @@
 package com.kbslan.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.kbslan.domain.entity.PriceTagPushRecord;
+import com.kbslan.domain.entity.PriceTagPushRecordEntity;
 import com.kbslan.domain.mapper.PriceTagPushRecordMapper;
 import com.kbslan.domain.service.PriceTagPushRecordService;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2023-08-22
  */
 @Service
-public class PriceTagPushRecordServiceImpl extends ServiceImpl<PriceTagPushRecordMapper, PriceTagPushRecord> implements PriceTagPushRecordService {
+public class PriceTagPushRecordServiceImpl extends ServiceImpl<PriceTagPushRecordMapper, PriceTagPushRecordEntity> implements PriceTagPushRecordService {
 
 }

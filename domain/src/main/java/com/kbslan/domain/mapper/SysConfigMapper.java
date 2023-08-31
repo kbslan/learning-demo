@@ -1,7 +1,7 @@
 package com.kbslan.domain.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kbslan.domain.entity.SysConfig;
+import com.kbslan.domain.entity.SysConfigEntity;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.kbslan.domain.entity.SysConfig;
  * @author chao.lan
  * @since 2023-08-22
  */
-public interface SysConfigMapper extends BaseMapper<SysConfig> {
+public interface SysConfigMapper extends BaseMapper<SysConfigEntity> {
 
 }

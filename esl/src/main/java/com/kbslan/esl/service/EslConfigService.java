@@ -1,0 +1,62 @@
+package com.kbslan.esl.service;
+
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
+import com.kbslan.domain.model.DeviceEslApiModel;
+import com.kbslan.domain.model.EslServiceConfigModel;
+
+import java.util.Map;
+
+
+/**
+ * <p>
+ * 电子价签配置服务
+ * </p>
+ *
+ * @author chao.lan
+ * @version 1.0.0
+ * @since 2023/8/31 18:00
+ */
+public interface EslConfigService {
+
+
+    /**
+     * <p>
+     * 查询门店厂商配置信息
+     * </p>
+     *
+     * @param storeId 门店ID
+     * @return 设备厂商code -> 门店配置信息
+     * @throws Exception 查询异常
+     */
+    Map<String, EslServiceConfigModel> query(Long storeId) throws Exception;
+
+    /**
+     * <p>
+     * 解析厂商ESL服务接口地址
+     * </p>
+     *
+     * @param eslServiceConfigModelMap 电子价签服务配置信息
+     * @return 设备厂商 -> 厂商ESL服务接口模型
+     * @throws Exception 解析异常
+     */
+    Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parse(Map<String, EslServiceConfigModel> eslServiceConfigModelMap) throws Exception;
+
+    /**
+     * <p>
+     * 获取厂商ESL接口token,如果厂商需要登录
+     * {@see EsServiceConfigModel#isNeedLogin()} 为true，则需要提供用户名和密码
+     * </p>
+     * <p>
+     * 1. 从缓存中获取token，如果存在则直接返回
+     * 2. 调用厂商服务获取token
+     * 3. 如果token不存在，则抛出异常
+     * 4. 如果token存在，则缓存token并返回
+     * </p>
+     *
+     * @param deviceEslApiModel 厂商ESL服务接口模型
+     * @return token
+     */
+    default String getToken(DeviceEslApiModel deviceEslApiModel) {
+        return null;
+    };
+}

@@ -2,15 +2,16 @@ package com.kbslan.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * <p>
- * 电子价签推送记录
+ * 门店基站
  * </p>
  *
  * @author chao.lan
@@ -19,9 +20,10 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class PriceTagPushRecord implements Serializable {
+public class ApStoreEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 7113849092261033839L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
@@ -37,34 +39,29 @@ public class PriceTagPushRecord implements Serializable {
     private Long storeId;
 
     /**
-     * 批次号
+     * 设备厂商 {@see PriceTagDeviceSupplierEnum}
      */
-    private String sid;
+    private String deviceSupplier;
 
     /**
-     * 推送模式
+     * 原始基站id
      */
-    private Integer pushMode;
+    private String originApId;
 
     /**
-     * 推送类型
+     * 基站mac
      */
-    private Integer pushType;
+    private String apMac;
 
     /**
-     * 触发类型 1：自动， 2：手动，3：补偿
+     * 末次心跳时间
      */
-    private Integer refreshType;
+    private LocalDateTime lastHeartbeat;
 
     /**
-     * 状态 0：待下发，1：下发中，2：下发成功，3：下发失败，4：补发成功
+     * 1：绑定，0：解绑 {@see YNEum}
      */
-    private Integer status;
-
-    /**
-     * 失败原因
-     */
-    private String errorMsg;
+    private Integer yn;
 
     /**
      * 创建人ID

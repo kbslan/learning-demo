@@ -1,7 +1,7 @@
 package com.kbslan.domain.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kbslan.domain.entity.ApStore;
+import com.kbslan.domain.entity.ApStoreEntity;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.kbslan.domain.entity.ApStore;
  * @author chao.lan
  * @since 2023-08-22
  */
-public interface ApStoreMapper extends BaseMapper<ApStore> {
+public interface ApStoreMapper extends BaseMapper<ApStoreEntity> {
 
 }

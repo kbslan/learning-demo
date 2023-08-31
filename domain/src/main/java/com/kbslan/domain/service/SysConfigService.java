@@ -1,7 +1,7 @@
 package com.kbslan.domain.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kbslan.domain.entity.SysConfig;
+import com.kbslan.domain.entity.SysConfigEntity;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.kbslan.domain.entity.SysConfig;
  * @author chao.lan
  * @since 2023-08-22
  */
-public interface SysConfigService extends IService<SysConfig> {
+public interface SysConfigService extends IService<SysConfigEntity> {
 
 }

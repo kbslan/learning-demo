@@ -1,7 +1,7 @@
 package com.kbslan.domain.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kbslan.domain.entity.ApStore;
+import com.kbslan.domain.entity.ApStoreEntity;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.kbslan.domain.entity.ApStore;
  * @author chao.lan
  * @since 2023-08-22
  */
-public interface ApStoreService extends IService<ApStore> {
+public interface ApStoreService extends IService<ApStoreEntity> {
 
 }

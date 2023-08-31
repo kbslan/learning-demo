@@ -1,7 +1,7 @@
 package com.kbslan.domain.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kbslan.domain.entity.PriceTagPushRecordDetail;
+import com.kbslan.domain.entity.PriceTagPushRecordDetailEntity;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.kbslan.domain.entity.PriceTagPushRecordDetail;
  * @author chao.lan
  * @since 2023-08-22
  */
-public interface PriceTagPushRecordDetailMapper extends BaseMapper<PriceTagPushRecordDetail> {
+public interface PriceTagPushRecordDetailMapper extends BaseMapper<PriceTagPushRecordDetailEntity> {
 
 }

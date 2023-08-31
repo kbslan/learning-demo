@@ -1,7 +1,7 @@
 package com.kbslan.domain.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kbslan.domain.entity.PriceTagPushRecordDetail;
+import com.kbslan.domain.entity.PriceTagPushRecordDetailEntity;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.kbslan.domain.entity.PriceTagPushRecordDetail;
  * @author chao.lan
  * @since 2023-08-22
  */
-public interface PriceTagPushRecordDetailService extends IService<PriceTagPushRecordDetail> {
+public interface PriceTagPushRecordDetailService extends IService<PriceTagPushRecordDetailEntity> {
 
 }

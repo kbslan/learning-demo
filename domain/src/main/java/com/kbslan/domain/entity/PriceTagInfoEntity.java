@@ -2,11 +2,12 @@ package com.kbslan.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -19,9 +20,9 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class PriceTagInfo implements Serializable {
+public class PriceTagInfoEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 6655163075253198155L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
@@ -37,12 +38,12 @@ public class PriceTagInfo implements Serializable {
     private Long storeId;
 
     /**
-     * 价签厂商ID 1：汉朔
+     * 设备厂商 {@see PriceTagDeviceSupplierEnum}
      */
-    private Integer deviceSupplierId;
+    private String deviceSupplier;
 
     /**
-     * 设备类型
+     * 设备类型 {@see PriceTagDeviceTypeEnum}
      */
     private String deviceType;
 
@@ -57,7 +58,7 @@ public class PriceTagInfo implements Serializable {
     private String priceTagId;
 
     /**
-     * 绑定来源
+     * 绑定来源 {@see PriceTagBingingSourceEnum}
      */
     private String bingingSource;
 
@@ -92,7 +93,7 @@ public class PriceTagInfo implements Serializable {
     private LocalDateTime lastHeartbeat;
 
     /**
-     * 绑定状态 1：绑定，0：解绑
+     * 1：绑定，0：解绑 {@see YNEum}
      */
     private Integer yn;
 

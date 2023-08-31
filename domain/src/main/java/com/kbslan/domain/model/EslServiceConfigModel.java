@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * <p>
@@ -18,7 +19,10 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class EslServiceConfig implements Serializable {
+public class EslServiceConfigModel implements Serializable {
+
+    private static final long serialVersionUID = 8277416824479261684L;
+
     /**
      * 服务域名或ip
      */
@@ -35,6 +39,11 @@ public class EslServiceConfig implements Serializable {
      * 是否需要登录获取toke
      */
     private boolean needLogin = false;
+
+    /**
+     * 登录接口uri
+     */
+    private String loginUri;
     /**
      * 用户名
      */
@@ -47,4 +56,9 @@ public class EslServiceConfig implements Serializable {
      * 价签刷新结果回调地址
      */
     private String callbackUrl;
+
+    /**
+     * 额外配置
+     */
+    private Map<String, String> extra;
 }
