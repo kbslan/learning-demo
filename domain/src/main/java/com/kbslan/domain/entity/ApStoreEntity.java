@@ -1,7 +1,6 @@
 package com.kbslan.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -20,6 +19,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("ap_store")
 public class ApStoreEntity implements Serializable {
 
 
@@ -31,11 +31,13 @@ public class ApStoreEntity implements Serializable {
     /**
      * 商家ID
      */
+    @TableField(fill = FieldFill.INSERT)
     private Long vendorId;
 
     /**
      * 门店ID
      */
+    @TableField(fill = FieldFill.INSERT)
     private Long storeId;
 
     /**
@@ -52,6 +54,11 @@ public class ApStoreEntity implements Serializable {
      * 基站mac
      */
     private String apMac;
+
+    /**
+     * 绑定来源 {@see PriceTagBingingSourceEnum}
+     */
+    private String bingingSource;
 
     /**
      * 末次心跳时间

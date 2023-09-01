@@ -1,7 +1,6 @@
 package com.kbslan.domain.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -20,6 +19,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("price_tag_info")
 public class PriceTagInfoEntity implements Serializable {
 
     private static final long serialVersionUID = 6655163075253198155L;
@@ -30,11 +30,13 @@ public class PriceTagInfoEntity implements Serializable {
     /**
      * 商家ID
      */
+    @TableField(fill = FieldFill.INSERT)
     private Long vendorId;
 
     /**
      * 门店ID
      */
+    @TableField(fill = FieldFill.INSERT)
     private Long storeId;
 
     /**

@@ -3,6 +3,7 @@ package com.kbslan.esl.service;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.model.EslServiceConfigModel;
+import com.kbslan.esl.vo.CommonParams;
 
 import java.util.Map;
 
@@ -41,6 +42,7 @@ public interface EslConfigService {
      */
     Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parse(Map<String, EslServiceConfigModel> eslServiceConfigModelMap) throws Exception;
 
+
     /**
      * <p>
      * 获取厂商ESL接口token,如果厂商需要登录
@@ -55,8 +57,20 @@ public interface EslConfigService {
      *
      * @param deviceEslApiModel 厂商ESL服务接口模型
      * @return token
+     * @throws Exception 获取token异常
      */
-    default String getToken(DeviceEslApiModel deviceEslApiModel) {
+    default String getToken(DeviceEslApiModel deviceEslApiModel) throws Exception {
         return null;
-    };
+    }
+
+    /**
+     * <p>
+     * 查询并解析厂商ESL服务接口地址
+     * </p>
+     *
+     * @param params 公共参数
+     * @return 厂商ESL服务接口模型
+     * @throws Exception 查询异常
+     */
+    DeviceEslApiModel queryAndParseEslConfigByDeviceSupplier(CommonParams params) throws Exception;
 }

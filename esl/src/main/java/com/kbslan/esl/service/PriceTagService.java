@@ -2,6 +2,7 @@ package com.kbslan.esl.service;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
+import com.kbslan.esl.vo.PriceTagParams;
 
 /**
  * <p>
@@ -25,25 +26,23 @@ public interface PriceTagService {
     /**
      * 绑定电子价签
      *
-     * @param storeId           门店ID
-     * @param priceTagId        电子价签ID
+     * @param params            绑定参数
      * @param deviceEslApiModel 厂商ESL服务接口模型
      * @return 是否绑定成功
      * @throws Exception 绑定异常
      */
-    boolean bindingPriceTag(String storeId, String priceTagId, DeviceEslApiModel deviceEslApiModel) throws Exception;
+    boolean bind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws Exception;
 
 
     /**
      * 解绑电子价签
      *
-     * @param storeId           门店ID
-     * @param priceTagId        电子价签ID
+     * @param params            解绑参数
      * @param deviceEslApiModel 厂商ESL服务接口模型
      * @return 是否解绑成功
      * @throws Exception 解绑异常
      */
-    boolean unbindingPriceTag(String storeId, String priceTagId, DeviceEslApiModel deviceEslApiModel) throws Exception;
+    boolean unbind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws Exception;
 
     /**
      * 刷新电子价签
@@ -55,5 +54,5 @@ public interface PriceTagService {
      * @return 是否刷新成功
      * @throws Exception 刷新异常
      */
-    boolean refreshPriceTag(String storeId, String priceTagId, Object data, DeviceEslApiModel deviceEslApiModel) throws Exception;
+    boolean refresh(String storeId, String priceTagId, Object data, DeviceEslApiModel deviceEslApiModel) throws Exception;
 }

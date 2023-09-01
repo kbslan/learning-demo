@@ -2,6 +2,18 @@ spring:
   datasource:
     type:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/sales_flowers?serverTimezone=GMT%2b8&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true&useSSL=false&connectTimeout=2000&socketTimeout=150000
+    url: jdbc:mysql://127.0.0.1:3306/dmall_rta_demo?serverTimezone=GMT%2b8&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&rewriteBatchedStatements=true&useSSL=false&connectTimeout=2000&socketTimeout=150000
     username: root
     password: 123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    timeout: 2000
+    maxTotal: 20
+    maxIdle: 20
+    minIdle: 20
+    maxWaitMillis: 2000
+    testOnBorrow: true
+    expireTime: 600

@@ -4,6 +4,7 @@ import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.service.OkHttpService;
 import com.kbslan.esl.service.PriceTagService;
+import com.kbslan.esl.vo.PriceTagParams;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,19 +29,19 @@ public class HanShowPriceTagServiceImpl implements PriceTagService {
     }
 
     @Override
-    public boolean bindingPriceTag(String storeId, String priceTagId, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔电子价签绑定请求...");
+    public boolean bind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
+        okHttpService.get("汉朔电子价签绑定请求..."+ params.toString());
         return true;
     }
 
     @Override
-    public boolean unbindingPriceTag(String storeId, String priceTagId, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔电子价签解绑请求...");
+    public boolean unbind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
+        okHttpService.get("汉朔电子价签解绑请求..."+ params.toString());
         return true;
     }
 
     @Override
-    public boolean refreshPriceTag(String storeId, String priceTagId, Object data, DeviceEslApiModel deviceEslApiModel) throws Exception {
+    public boolean refresh(String storeId, String priceTagId, Object data, DeviceEslApiModel deviceEslApiModel) throws Exception {
         okHttpService.get("汉朔电子价签刷新请求...");
         return true;
     }

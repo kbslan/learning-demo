@@ -4,6 +4,7 @@ import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.service.OkHttpService;
 import com.kbslan.esl.service.StoreStationService;
+import com.kbslan.esl.vo.StationParams;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,14 +29,14 @@ public class HanShowStoreStationServiceImpl implements StoreStationService {
     }
 
     @Override
-    public boolean bindStation(String storeId, String apMac, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔基站绑定请求...");
+    public boolean bind(StationParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
+        okHttpService.get("汉朔基站绑定请求..." + params.toString());
         return true;
     }
 
     @Override
-    public boolean unbindStation(String storeId, String apMac, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔基站解绑请求...");
+    public boolean unbind(StationParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
+        okHttpService.get("汉朔基站解绑请求..." + params.toString());
         return true;
     }
 }

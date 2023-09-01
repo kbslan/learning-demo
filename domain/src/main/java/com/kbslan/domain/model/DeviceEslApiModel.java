@@ -40,7 +40,7 @@ public class DeviceEslApiModel implements Serializable {
     /**
      * 服务健康检查url
      */
-    private String health;
+    private String healthUrl;
 
     /**
      * 是否需要登录获取token
@@ -59,32 +59,37 @@ public class DeviceEslApiModel implements Serializable {
     /**
      * 登录url
      */
-    private String login;
+    private String loginUrl;
+
+    /**
+     * token
+     */
+    private String token;
 
     /**
      * 基站绑定url
      */
-    private String bindingStation;
+    private String bindingStationUrl;
 
     /**
      * 基站解绑url
      */
-    private String unbindingStation;
+    private String unbindingStationUrl;
 
     /**
      * 价签绑定url
      */
-    private String bindingPriceTag;
+    private String bindingPriceTagUrl;
 
     /**
      * 价签解绑url
      */
-    private String unbindingPriceTag;
+    private String unbindingPriceTagUrl;
 
     /**
      * 价签刷新url
      */
-    private String refreshPriceTag;
+    private String refreshPriceTagUrl;
 
     /**
      * 额外配置信息

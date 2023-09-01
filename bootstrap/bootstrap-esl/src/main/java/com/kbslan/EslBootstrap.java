@@ -1,6 +1,5 @@
 package com.kbslan;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -12,7 +11,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @since 2023/8/22 14:55
  */
 @SpringBootApplication
-@MapperScan("com.kbslan.domain.mapper")
 public class EslBootstrap extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(EslBootstrap.class, args);

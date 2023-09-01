@@ -1,15 +1,10 @@
 package com.kbslan.domain.enums;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.kbslan.domain.model.EslServiceConfigModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 配置编码KEY
@@ -23,6 +18,7 @@ import java.util.Objects;
 public enum ConfigKeyEnum {
     ESL_SERVER_CONFIG("esl_server_config", "电子价签厂商ESL服务配置", EslServiceConfigModel.class),
     ESL_SUPPORT_SUPPLIER_ID_LIST("esl_support_supplier_list", "支持的电子价签厂商列表", List.class),
+    ESL_CHECK_BINDING_SOURCE("esl_check_binding_source", "电子价签绑定校验来源", Boolean.class),
     ;
 
     private final String code;
@@ -45,7 +41,6 @@ public enum ConfigKeyEnum {
         }
     }
 
-    @JsonCreator
     public static ConfigKeyEnum get(String code) {
         return Objects.isNull(code) ? null : cache.get(code);
     }

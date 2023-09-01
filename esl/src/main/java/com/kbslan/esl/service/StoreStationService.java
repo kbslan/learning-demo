@@ -2,6 +2,7 @@ package com.kbslan.esl.service;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
+import com.kbslan.esl.vo.StationParams;
 
 /**
  * <p>
@@ -24,22 +25,20 @@ public interface StoreStationService {
     /**
      * 绑定基站
      *
-     * @param storeId           门店ID
-     * @param apMac             基站MAC
+     * @param stationParams     绑定参数
      * @param deviceEslApiModel 厂商ESL服务接口模型
      * @return 是否绑定成功
      * @throws Exception 绑定异常
      */
-    boolean bindStation(String storeId, String apMac, DeviceEslApiModel deviceEslApiModel) throws Exception;
+    boolean bind(StationParams stationParams, DeviceEslApiModel deviceEslApiModel) throws Exception;
 
     /**
      * 解绑基站
      *
-     * @param storeId           门店ID
-     * @param apMac             基站MAC
+     * @param unbindingParams   解绑参数
      * @param deviceEslApiModel 厂商ESL服务接口模型
      * @return 是否解绑成功
      * @throws Exception 解绑异常
      */
-    boolean unbindStation(String storeId, String apMac, DeviceEslApiModel deviceEslApiModel) throws Exception;
+    boolean unbind(StationParams unbindingParams, DeviceEslApiModel deviceEslApiModel) throws Exception;
 }

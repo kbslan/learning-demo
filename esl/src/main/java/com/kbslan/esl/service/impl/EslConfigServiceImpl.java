@@ -9,10 +9,10 @@ import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.model.EslServiceConfigModel;
 import com.kbslan.domain.service.SysConfigService;
-import com.kbslan.esl.service.DeviceApiParser;
-import com.kbslan.esl.service.DeviceApiParserFactory;
-import com.kbslan.esl.service.EslConfigService;
+import com.kbslan.esl.config.RedisUtils;
+import com.kbslan.esl.service.*;
 import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.vo.CommonParams;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -34,10 +34,17 @@ import java.util.Objects;
  */
 @Service
 public class EslConfigServiceImpl implements EslConfigService {
+
+    //缓存key token:deviceSupplier:loginUrl:userName
+    private static final String TOKEN_KEY = "token:%s:%s:%s";
     @Resource
     private SysConfigService sysConfigService;
     @Resource
     private DeviceApiParserFactory deviceApiParserFactory;
+    @Resource
+    private RedisUtils redisUtils;
+    @Resource
+    private OkHttpService okHttpService;
 
     @Override
     public Map<String, EslServiceConfigModel> query(Long storeId) throws Exception {
@@ -80,16 +87,67 @@ public class EslConfigServiceImpl implements EslConfigService {
                 .needLogin(eslServiceConfigModel.isNeedLogin())
                 .userName(eslServiceConfigModel.getUserName())
                 .password(eslServiceConfigModel.getPassword())
-                .login(parser.parseLoginUrl(eslServiceConfigModel))
-                .health(parser.parseEslHealthUrl(eslServiceConfigModel))
-                .bindingStation(parser.parseBindingStationUrl(eslServiceConfigModel))
-                .unbindingStation(parser.parseUnbindingStationUrl(eslServiceConfigModel))
-                .bindingPriceTag(parser.parseBindingPriceTagUrl(eslServiceConfigModel))
-                .unbindingPriceTag(parser.parseUnbindingPriceTagUrl(eslServiceConfigModel))
-                .refreshPriceTag(parser.parseRefreshPriceTagUrl(eslServiceConfigModel))
+                .loginUrl(parser.parseLoginUrl(eslServiceConfigModel))
+                .healthUrl(parser.parseEslHealthUrl(eslServiceConfigModel))
+                .bindingStationUrl(parser.parseBindingStationUrl(eslServiceConfigModel))
+                .unbindingStationUrl(parser.parseUnbindingStationUrl(eslServiceConfigModel))
+                .bindingPriceTagUrl(parser.parseBindingPriceTagUrl(eslServiceConfigModel))
+                .unbindingPriceTagUrl(parser.parseUnbindingPriceTagUrl(eslServiceConfigModel))
+                .refreshPriceTagUrl(parser.parseRefreshPriceTagUrl(eslServiceConfigModel))
                 .extra(eslServiceConfigModel.getExtra())
                 .build();
     }
 
+    @Override
+    public String getToken(DeviceEslApiModel deviceEslApiModel) throws Exception {
+        if (Objects.isNull(deviceEslApiModel) || !deviceEslApiModel.isNeedLogin()) {
+            return null;
+        }
+        //缓存KEY
+        String key = String.format(TOKEN_KEY, deviceEslApiModel.getDeviceSupplier().getCode(), deviceEslApiModel.getLoginUrl(), deviceEslApiModel.getUserName());
+        String token = redisUtils.string.get(key);
+        //1. 从缓存中获取token，如果存在则直接返回
+        if (StringUtils.isNotBlank(token)) {
+            return token;
+        }
 
+        // 2. 调用厂商服务获取token
+        String result = okHttpService.post(deviceEslApiModel.getLoginUrl(), deviceEslApiModel.getUserName());
+        // 3. 如果token不存在，则抛出异常
+        if (StringUtils.isBlank(result)) {
+            throw new IllegalArgumentException(EslNoticeMessage.ESL_LOGIN_ERROR);
+        }
+        // 4. 如果token存在，则缓存token并返回
+        token = JSON.parseObject(result).getString("token");
+
+        if (StringUtils.isNotBlank(token)) {
+            redisUtils.string.set(key, token);
+            redisUtils.key.expire(key, 60 * 60);
+        }
+        return token;
+    }
+
+
+    @Override
+    public DeviceEslApiModel queryAndParseEslConfigByDeviceSupplier(CommonParams params) throws Exception {
+        //查询ESL服务配置
+        Map<String, EslServiceConfigModel> configModelMap = this.query(params.getStoreId());
+
+        //解析ESL服务配置
+        Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> deviceEslApiModelMap = this.parse(configModelMap);
+
+        DeviceEslApiModel deviceEslApiModel = deviceEslApiModelMap.get(params.getDeviceSupplier());
+
+        if (Objects.isNull(deviceEslApiModel)) {
+            throw new IllegalArgumentException(EslNoticeMessage.ESL_CONFIG_NOT_FOUND);
+        }
+
+        //获取token
+        if (deviceEslApiModel.isNeedLogin()) {
+            String token = this.getToken(deviceEslApiModel);
+            deviceEslApiModel.setToken(token);
+        }
+
+        return deviceEslApiModel;
+    }
 }
