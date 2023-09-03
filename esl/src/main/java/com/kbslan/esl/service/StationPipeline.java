@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  * <p>
- *  基站处理流程抽象模版方法
+ * 基站处理流程抽象模版方法
  * </p>
  *
  * @author chao.lan
@@ -169,6 +169,7 @@ public abstract class StationPipeline {
      */
     protected void updateBindRecord(StationParams params, ApStoreEntity apStoreEntity) {
         apStoreEntity.setYn(YNEnum.YES.getCode());
+        apStoreEntity.setBingingSource(params.getBingingSource().getCode());
         apStoreEntity.setModifierId(params.getUserId());
         apStoreEntity.setModifierName(params.getUserName());
         apStoreEntity.setModified(LocalDateTime.now());
@@ -182,6 +183,7 @@ public abstract class StationPipeline {
      */
     protected void updateUnBindRecord(StationParams params, ApStoreEntity apStoreEntity) {
         apStoreEntity.setYn(YNEnum.NO.getCode());
+        apStoreEntity.setBingingSource(params.getBingingSource().getCode());
         apStoreEntity.setModifierId(params.getUserId());
         apStoreEntity.setModifierName(params.getUserName());
         apStoreEntity.setModified(LocalDateTime.now());
@@ -200,6 +202,7 @@ public abstract class StationPipeline {
         apStoreEntity.setDeviceSupplier(params.getDeviceSupplier().getCode());
         apStoreEntity.setOriginAp(params.getOriginApId());
         apStoreEntity.setApMac(params.getApMac());
+        apStoreEntity.setBingingSource(params.getBingingSource().getCode());
         apStoreEntity.setYn(YNEnum.YES.getCode());
         apStoreEntity.setCreatorId(params.getUserId());
         apStoreEntity.setCreatorName(params.getUserName());

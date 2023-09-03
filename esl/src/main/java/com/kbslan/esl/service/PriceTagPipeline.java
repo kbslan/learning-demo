@@ -115,8 +115,7 @@ public abstract class PriceTagPipeline {
         DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfigByDeviceSupplier(params);
         //是否需要检查绑定来源
         boolean needCheckBindingSource = isNeedCheckBindingSource(params);
-        if (needCheckBindingSource && Objects.nonNull(priceTagInfoEntity)
-                && !Objects.equals(priceTagInfoEntity.getBingingSource(), params.getBingingSource().getCode())) {
+        if (needCheckBindingSource && !Objects.equals(priceTagInfoEntity.getBingingSource(), params.getBingingSource().getCode())) {
             //绑定来源不是一致
             throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE);
         }
@@ -168,6 +167,7 @@ public abstract class PriceTagPipeline {
      */
     protected void updateUnBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
         priceTagInfoEntity.setYn(YNEnum.NO.getCode());
+        priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
         priceTagInfoEntity.setModifierId(params.getUserId());
         priceTagInfoEntity.setModifierName(params.getUserName());
         priceTagInfoEntity.setModified(LocalDateTime.now());
@@ -175,6 +175,7 @@ public abstract class PriceTagPipeline {
 
     private void updateBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
         priceTagInfoEntity.setYn(YNEnum.YES.getCode());
+        priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
         priceTagInfoEntity.setModifierId(params.getUserId());
         priceTagInfoEntity.setModifierName(params.getUserName());
         priceTagInfoEntity.setModified(LocalDateTime.now());

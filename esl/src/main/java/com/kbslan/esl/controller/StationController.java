@@ -40,7 +40,7 @@ public class StationController {
      * @return 基站列表
      */
     @PostMapping("/page")
-    public DataResponseJson page(ApStoreQuery query) {
+    public DataResponseJson page(@RequestBody ApStoreQuery query) {
         Page<ApStoreEntity> page = apStoreService.page(
                 new Page<>(query.getCurrent(), query.getSize()),
                 Wrappers.<ApStoreEntity>lambdaQuery()

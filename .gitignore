@@ -34,3 +34,4 @@
 /bootstrap/bootstrap-esl/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 /bootstrap/bootstrap-sentinel/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 /bootstrap/bootstrap-sentinel/target/classes/com/kbslan/SentinelBootstrap.class
+/bootstrap/bootstrap-esl/target/classes/logback-spring.xml

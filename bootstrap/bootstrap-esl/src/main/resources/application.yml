@@ -17,3 +17,10 @@ spring:
     maxWaitMillis: 2000
     testOnBorrow: true
     expireTime: 600
+logging:
+  config: classpath:logback-spring.xml
+log:
+  additivity: fasle
+  level: INFO
+  sql:
+    level: INFO
