@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  * <p>
- * nothing to say
+ *  基站处理流程抽象模版方法
  * </p>
  *
  * @author chao.lan
@@ -198,7 +198,7 @@ public abstract class StationPipeline {
         apStoreEntity.setVendorId(params.getVendorId());
         apStoreEntity.setStoreId(params.getStoreId());
         apStoreEntity.setDeviceSupplier(params.getDeviceSupplier().getCode());
-        apStoreEntity.setOriginApId(params.getOriginApId());
+        apStoreEntity.setOriginAp(params.getOriginApId());
         apStoreEntity.setApMac(params.getApMac());
         apStoreEntity.setYn(YNEnum.YES.getCode());
         apStoreEntity.setCreatorId(params.getUserId());

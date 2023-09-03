@@ -29,6 +29,8 @@ import java.util.Objects;
 public class PriceTagController {
     @Resource
     private PriceTagInfoService priceTagInfoService;
+    @Resource
+    private PipelineFactory pipelineFactory;
 
     @GetMapping("/page")
     public DataResponseJson page(@RequestBody PriceTagInfoQuery query) {
@@ -45,13 +47,11 @@ public class PriceTagController {
 
     @PostMapping("/bind")
     public DataResponseJson bind(@RequestBody PriceTagParams stationParams) throws Exception {
-        PipelineFactory pipelineFactory = new HanShowPipelineFactory();
         return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().bind(stationParams));
     }
 
     @PostMapping("/unbind")
     public DataResponseJson unbind(@RequestBody PriceTagParams unbindingParams) throws Exception {
-        PipelineFactory pipelineFactory = new HanShowPipelineFactory();
         return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().unbind(unbindingParams));
     }
 }

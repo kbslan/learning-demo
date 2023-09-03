@@ -23,7 +23,7 @@ import java.util.Objects;
 
 /**
  * <p>
- * nothing to say
+ *  电子价签处理流程抽象模版方法
  * </p>
  *
  * @author chao.lan

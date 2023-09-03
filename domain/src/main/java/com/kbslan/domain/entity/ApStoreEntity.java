@@ -46,9 +46,9 @@ public class ApStoreEntity implements Serializable {
     private String deviceSupplier;
 
     /**
-     * 原始基站id
+     * 原始基站地址
      */
-    private String originApId;
+    private String originAp;
 
     /**
      * 基站mac

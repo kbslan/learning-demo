@@ -37,7 +37,15 @@ public class HanShowDeviceApiParser implements DeviceApiParser {
 
     @Override
     public String parseLoginUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
-        if (Objects.isNull(eslServiceConfigModel) || StringUtils.isBlank(eslServiceConfigModel.getLoginUri())) {
+        if (Objects.isNull(eslServiceConfigModel)) {
+            throw new IllegalArgumentException(EslNoticeMessage.PARSE_LOGIN_ERROR);
+        }
+
+        if (!eslServiceConfigModel.isNeedLogin()) {
+            return null;
+        }
+
+        if (StringUtils.isBlank(eslServiceConfigModel.getLoginUri())) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_LOGIN_ERROR);
         }
         return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), eslServiceConfigModel.getLoginUri());

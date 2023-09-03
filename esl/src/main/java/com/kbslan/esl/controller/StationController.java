@@ -7,6 +7,7 @@ import com.kbslan.domain.service.ApStoreService;
 import com.kbslan.esl.service.PipelineFactory;
 import com.kbslan.esl.service.impl.hanshow.HanShowPipelineFactory;
 import com.kbslan.esl.vo.ApStoreQuery;
+import com.kbslan.esl.vo.PageRequest;
 import com.kbslan.esl.vo.StationParams;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,8 @@ import java.util.Objects;
 public class StationController {
     @Resource
     private ApStoreService apStoreService;
+    @Resource
+    private PipelineFactory pipelineFactory;
 
     /**
      * 基站列表查询
@@ -59,7 +62,6 @@ public class StationController {
      */
     @PostMapping("/bind")
     public DataResponseJson bind(@RequestBody StationParams stationParams) throws Exception {
-        PipelineFactory pipelineFactory = new HanShowPipelineFactory();
         return DataResponseJson.ok(pipelineFactory.createStationPipeline().bind(stationParams));
     }
 
@@ -72,7 +74,6 @@ public class StationController {
      */
     @PostMapping("/unbind")
     public DataResponseJson unbind(@RequestBody StationParams unbindingParams) throws Exception {
-        PipelineFactory pipelineFactory = new HanShowPipelineFactory();
         return DataResponseJson.ok(pipelineFactory.createStationPipeline().unbind(unbindingParams));
     }
 }
