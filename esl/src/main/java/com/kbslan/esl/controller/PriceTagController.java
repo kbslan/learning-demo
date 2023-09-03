@@ -32,7 +32,13 @@ public class PriceTagController {
     @Resource
     private PipelineFactory pipelineFactory;
 
-    @GetMapping("/page")
+    /**
+     * 电子价签列表查询
+     *
+     * @param query 查询参数
+     * @return 电子价签列表
+     */
+    @PostMapping("/page")
     public DataResponseJson page(@RequestBody PriceTagInfoQuery query) {
 
         Page<PriceTagInfoEntity> page = priceTagInfoService.page(
@@ -45,13 +51,27 @@ public class PriceTagController {
         return DataResponseJson.ok(page);
     }
 
+    /**
+     * 绑定电子价签
+     *
+     * @param params 绑定参数
+     * @return 绑定结果
+     * @throws Exception 绑定异常
+     */
     @PostMapping("/bind")
-    public DataResponseJson bind(@RequestBody PriceTagParams stationParams) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().bind(stationParams));
+    public DataResponseJson bind(@RequestBody PriceTagParams params) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().bind(params));
     }
 
+    /**
+     * 解绑电子价签
+     *
+     * @param params 解绑参数
+     * @return 解绑结果
+     * @throws Exception 解绑异常
+     */
     @PostMapping("/unbind")
-    public DataResponseJson unbind(@RequestBody PriceTagParams unbindingParams) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().unbind(unbindingParams));
+    public DataResponseJson unbind(@RequestBody PriceTagParams params) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().unbind(params));
     }
 }

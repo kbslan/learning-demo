@@ -39,7 +39,7 @@ public class StationController {
      * @param query 查询条件
      * @return 基站列表
      */
-    @GetMapping("/page")
+    @PostMapping("/page")
     public DataResponseJson page(ApStoreQuery query) {
         Page<ApStoreEntity> page = apStoreService.page(
                 new Page<>(query.getCurrent(), query.getSize()),
@@ -56,24 +56,24 @@ public class StationController {
     /**
      * 绑定基站
      *
-     * @param stationParams 绑定参数
+     * @param params 绑定参数
      * @return 绑定结果
      * @throws Exception 绑定异常
      */
     @PostMapping("/bind")
-    public DataResponseJson bind(@RequestBody StationParams stationParams) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createStationPipeline().bind(stationParams));
+    public DataResponseJson bind(@RequestBody StationParams params) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createStationPipeline().bind(params));
     }
 
     /**
      * 解绑基站
      *
-     * @param unbindingParams 解绑参数
+     * @param params 解绑参数
      * @return 解绑结果
      * @throws Exception 解绑异常
      */
     @PostMapping("/unbind")
-    public DataResponseJson unbind(@RequestBody StationParams unbindingParams) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createStationPipeline().unbind(unbindingParams));
+    public DataResponseJson unbind(@RequestBody StationParams params) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createStationPipeline().unbind(params));
     }
 }
