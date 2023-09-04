@@ -4,8 +4,8 @@ import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.service.PriceTagService;
-import com.kbslan.esl.vo.PriceTagParams;
-import com.kbslan.esl.vo.PriceTagRefreshParams;
+import com.kbslan.esl.vo.request.pricetag.PriceTagParams;
+import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshParams;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

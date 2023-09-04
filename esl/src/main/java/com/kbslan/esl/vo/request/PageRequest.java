@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo;
+package com.kbslan.esl.vo.request;
 
 import lombok.Data;
 

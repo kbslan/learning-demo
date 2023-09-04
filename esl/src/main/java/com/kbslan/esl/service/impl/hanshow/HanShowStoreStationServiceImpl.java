@@ -3,7 +3,7 @@ package com.kbslan.esl.service.impl.hanshow;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.service.StoreStationService;
-import com.kbslan.esl.vo.StationParams;
+import com.kbslan.esl.vo.request.pricetag.StationParams;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

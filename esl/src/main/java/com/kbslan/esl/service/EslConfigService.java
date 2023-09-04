@@ -3,7 +3,7 @@ package com.kbslan.esl.service;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.model.EslServiceConfigModel;
-import com.kbslan.esl.vo.CommonParams;
+import com.kbslan.esl.vo.request.pricetag.CommonParams;
 
 import java.util.Map;
 

@@ -12,7 +12,7 @@ import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.rpc.StoreSkuListVO;
 import com.kbslan.esl.rpc.WareClientRpc;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
-import com.kbslan.esl.vo.PriceTagParams;
+import com.kbslan.esl.vo.request.pricetag.PriceTagParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

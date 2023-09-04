@@ -7,7 +7,7 @@ import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.service.ApStoreService;
 import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
-import com.kbslan.esl.vo.StationParams;
+import com.kbslan.esl.vo.request.pricetag.StationParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 

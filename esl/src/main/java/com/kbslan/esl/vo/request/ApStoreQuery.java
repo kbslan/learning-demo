@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo;
+package com.kbslan.esl.vo.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,17 +6,18 @@ import lombok.ToString;
 
 /**
  * <p>
- *     电子价签查询
+ * nothing to say
  * </p>
  *
  * @author chao.lan
  * @version 1.0.0
- * @since 2023/9/1 17:10
+ * @since 2023/9/1 16:24
  */
 @Getter
 @Setter
 @ToString
-public class PriceTagInfoQuery extends PageRequest {
+public class ApStoreQuery extends PageRequest {
+
     /**
      * 商家ID
      */
@@ -28,12 +29,13 @@ public class PriceTagInfoQuery extends PageRequest {
     private Long storeId;
 
     /**
-     * 电子价签ID
+     * 基站mac
      */
-    private String priceTagId;
+    private String apMac;
 
     /**
      * 状态
      */
     private Integer yn;
+
 }

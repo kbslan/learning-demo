@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo;
+package com.kbslan.esl.vo.request.pricetag;
 
 import lombok.Getter;
 import lombok.Setter;

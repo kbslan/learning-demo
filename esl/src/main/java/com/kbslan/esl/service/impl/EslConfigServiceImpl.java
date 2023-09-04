@@ -12,7 +12,7 @@ import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.service.*;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
-import com.kbslan.esl.vo.CommonParams;
+import com.kbslan.esl.vo.request.pricetag.CommonParams;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
