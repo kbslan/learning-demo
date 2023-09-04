@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.esl.service.PriceTagServiceFactory;
 import com.kbslan.esl.service.StoreStationServiceFactory;
+import com.kbslan.esl.vo.hanshow.HanShowResult;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -34,20 +35,6 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/device")
 public class PriceTagCallbackController {
-    /**
-     * 基站心跳
-     */
-    String AP_STATUS = "AP_STATUS";
-
-    /**
-     * 价签心跳
-     */
-    String ESL_HB_STATUS = "ESL_HB_STATUS";
-
-    /**
-     * 当” ESL_UPDATE” 命令传输结束后返回更新结果和相关信息。
-     */
-    String ESL_UPDATE_ACK = "ESL_UPDATE_ACK";
 
     @Resource
     private StoreStationServiceFactory storeStationServiceFactory;
@@ -72,9 +59,9 @@ public class PriceTagCallbackController {
 
         String type = jsonObject.getString("type");
         //基站
-        if (Objects.equals(type, AP_STATUS)) {
+        if (Objects.equals(type, HanShowResult.AP_STATUS)) {
             storeStationServiceFactory.create(deviceSupplier).heartbeat(json);
-        } else if (Objects.equals(type, ESL_HB_STATUS)) {
+        } else if (Objects.equals(type, HanShowResult.ESL_HB_STATUS)) {
             priceTagServiceFactory.create(deviceSupplier).heartbeat(json);
         } else {
             throw new IllegalArgumentException("未识别的心跳类型" + type);

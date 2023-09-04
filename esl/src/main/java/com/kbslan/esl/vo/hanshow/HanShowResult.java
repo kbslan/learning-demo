@@ -18,6 +18,24 @@ import java.util.Objects;
 @Getter
 @Setter
 public class HanShowResult<T> {
+    public static final String AP_OFFLINE = "201";
+    public static final String STATUS_ONLINE = "online";
+    public static final String STATUS_OFFLINE = "offline";
+    /**
+     * 基站心跳
+     */
+    public static final String AP_STATUS = "AP_STATUS";
+
+    /**
+     * 价签心跳
+     */
+    public static final String ESL_HB_STATUS = "ESL_HB_STATUS";
+
+    /**
+     * 当” ESL_UPDATE” 命令传输结束后返回更新结果和相关信息。
+     */
+    public static final String ESL_UPDATE_ACK = "ESL_UPDATE_ACK";
+
     /**
      * 错误代码。参考APIv3返回值。
      * 0 成功完成
