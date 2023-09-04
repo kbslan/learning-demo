@@ -41,4 +41,13 @@ public interface StoreStationService {
      * @throws Exception 解绑异常
      */
     boolean unbind(StationParams unbindingParams, DeviceEslApiModel deviceEslApiModel) throws Exception;
+
+
+    /**
+     * 基站心跳处理
+     *
+     * @param json 心跳参数
+     * @throws Exception 异常
+     */
+    void heartbeat(String json) throws Exception;
 }

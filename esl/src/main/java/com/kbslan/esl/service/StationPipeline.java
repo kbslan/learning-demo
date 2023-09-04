@@ -5,7 +5,8 @@ import com.kbslan.domain.entity.ApStoreEntity;
 import com.kbslan.domain.enums.YNEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.service.ApStoreService;
-import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.config.RedisUtils;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import com.kbslan.esl.vo.StationParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -25,12 +26,16 @@ import java.util.Objects;
  */
 @Slf4j
 public abstract class StationPipeline {
+    //门店有效基站key
+    public static final String HAS_VALID_STORE_KEY = "StoreValidStation:%s";
     @Resource
     private EslConfigService eslConfigService;
     @Resource
     private StoreStationServiceFactory storeStationServiceFactory;
     @Resource
     private ApStoreService apStoreService;
+    @Resource
+    private RedisUtils redisUtils;
 
     /**
      * 绑定基站流程
@@ -62,6 +67,9 @@ public abstract class StationPipeline {
         //查询厂商配置
         DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfigByDeviceSupplier(params);
 
+        //调用厂商接口前处理逻辑
+        beforeBind(params, deviceEslApiModel);
+
         //绑定基站
         boolean bindingSuccess = storeStationServiceFactory.create(params.getDeviceSupplier()).bind(params, deviceEslApiModel);
 
@@ -69,6 +77,8 @@ public abstract class StationPipeline {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
 
+        //调用厂商接口成功后处理逻辑
+        afterBindSuccess(params, deviceEslApiModel);
         boolean saveSuccess = false;
         try {
             if (Objects.isNull(apStoreEntity)) {
@@ -78,6 +88,11 @@ public abstract class StationPipeline {
                 //更新绑定关系
                 updateBindRecord(params, apStoreEntity);
                 saveSuccess = apStoreService.updateById(apStoreEntity);
+            }
+
+            if (saveSuccess) {
+                //绑定关系入库成功后处理逻辑
+                afterBindSaveSuccess(params, deviceEslApiModel);
             }
 
         } catch (Exception e) {
@@ -122,16 +137,27 @@ public abstract class StationPipeline {
         //查询厂商配置
         DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfigByDeviceSupplier(params);
 
+        //调用厂商接口前处理逻辑
+        beforeUnbind(params, deviceEslApiModel);
+
         boolean unbindingSuccess = storeStationServiceFactory.create(params.getDeviceSupplier()).unbind(params, deviceEslApiModel);
         if (!unbindingSuccess) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
+
+        //调用厂商接口成功后处理逻辑
+        afterUnBindSuccess(params, deviceEslApiModel);
 
         //更新绑定关系
         boolean saveSuccess = false;
         try {
             updateUnBindRecord(params, apStoreEntity);
             saveSuccess = apStoreService.updateById(apStoreEntity);
+
+            if (saveSuccess) {
+                //解绑关系入库成功后处理
+                afterUnBindSaveSuccess(params, deviceEslApiModel);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -245,4 +271,71 @@ public abstract class StationPipeline {
     }
 
 
+    /**
+     * 调用厂商接口绑定前处理逻辑
+     *
+     * @param params            绑定参数
+     * @param deviceEslApiModel 厂商配置
+     */
+    protected void beforeBind(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+        //预留操作入口，微调流程处理逻辑
+    }
+
+    /**
+     * 调用厂商接口绑定成功后处理逻辑
+     *
+     * @param params            绑定参数
+     * @param deviceEslApiModel 厂商配置
+     */
+    protected void afterBindSuccess(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+        //预留操作入口，微调流程处理逻辑
+    }
+
+    /**
+     * 绑定关系入库成功后处理逻辑
+     *
+     * @param params            绑定参数
+     * @param deviceEslApiModel 厂商配置
+     */
+    protected void afterBindSaveSuccess(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+        try {
+            redisUtils.set.sadd(String.format(HAS_VALID_STORE_KEY, params.getStoreId()), params.getApMac());
+        } catch (Exception e) {
+            log.error("redis 添加有效基站失败 params={}", params, e);
+        }
+    }
+
+    /**
+     * 调用厂商接口前处理逻辑
+     *
+     * @param params            解绑参数
+     * @param deviceEslApiModel 厂商配置
+     */
+    protected void beforeUnbind(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+        //预留操作入口，微调流程处理逻辑
+    }
+
+    /**
+     * 调用厂商接口成功后处理逻辑
+     *
+     * @param params            解绑参数
+     * @param deviceEslApiModel 厂商配置
+     */
+    protected void afterUnBindSuccess(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+        //预留操作入口，微调流程处理逻辑
+    }
+
+    /**
+     * 解绑关系入库成功后处理
+     *
+     * @param params            解绑参数
+     * @param deviceEslApiModel 厂商配置
+     */
+    protected void afterUnBindSaveSuccess(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+        try {
+            redisUtils.set.srem(String.format(HAS_VALID_STORE_KEY, params.getStoreId()), params.getApMac());
+        } catch (Exception e) {
+            log.error("redis 添加有效基站失败 params={}", params, e);
+        }
+    }
 }

@@ -3,7 +3,7 @@ package com.kbslan.esl.service.impl.hanshow;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.EslServiceConfigModel;
 import com.kbslan.esl.service.DeviceApiParser;
-import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -28,15 +28,15 @@ public class HanShowDeviceApiParser implements DeviceApiParser {
     }
 
     @Override
-    public String parseEslHealthUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseEslHealthUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel) || StringUtils.isBlank(eslServiceConfigModel.getHealthUri())) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_HEALTH_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), eslServiceConfigModel.getHealthUri());
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), eslServiceConfigModel.getHealthUri());
     }
 
     @Override
-    public String parseLoginUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseLoginUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_LOGIN_ERROR);
         }
@@ -48,52 +48,62 @@ public class HanShowDeviceApiParser implements DeviceApiParser {
         if (StringUtils.isBlank(eslServiceConfigModel.getLoginUri())) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_LOGIN_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), eslServiceConfigModel.getLoginUri());
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), eslServiceConfigModel.getLoginUri());
     }
 
     @Override
-    public String parseBindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseBindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_BINDING_STATION_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api/v1/station/bind");
+        //{user}/user/ap PUT 为该门店分配一个基站
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api3/{user}/user/ap");
     }
 
     @Override
-    public String parseUnbindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseUnbindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_UNBINDING_STATION_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api/v1/station/unbind");
+        //{user}/user/ap/{apMac} DELETE 从该user移除一个基站
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api3/{user}/user/ap/{apMac}");
     }
 
 
     @Override
-    public String parseBindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseBindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_BINDING_PRICE_TAG_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api/v1/tag/bind");
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api/v1/tag/bind");
     }
 
     @Override
-    public String parseUnbindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseUnbindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_UNBINDING_PRICE_TAG_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api/v1/tag/unbind");
+        //{user}/esls/bind DELETE 批量解绑价签
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api3/{user}/esls/bind");
     }
 
     @Override
-    public String parseRefreshPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+    public UriComponentsBuilder parseRefreshPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
         if (Objects.isNull(eslServiceConfigModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.PARSE_REFRESH_PRICE_TAG_ERROR);
         }
-        return fromHttpUrl(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api/v1/tag/refresh");
+        return builder(eslServiceConfigModel.getHost(), eslServiceConfigModel.getPort(), "/api3/{user}/esls/{id}/screen");
     }
 
+    @Override
+    public UriComponentsBuilder parseCallbackUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception {
+        if (Objects.isNull(eslServiceConfigModel) || StringUtils.isBlank(eslServiceConfigModel.getCallbackUrl())) {
+            throw new IllegalArgumentException(EslNoticeMessage.PARSE_PRICE_TAG_CALLBACK_ERROR);
+        }
+        return UriComponentsBuilder.fromHttpUrl(eslServiceConfigModel.getCallbackUrl());
+    }
 
-    private String fromHttpUrl(String host, Integer port, String path) {
-        return UriComponentsBuilder.fromHttpUrl(host + ":" + port + "/" + path).toUriString();
+    private UriComponentsBuilder builder(String host, Integer port, String path) {
+        return UriComponentsBuilder.fromHttpUrl(host + ":" + port + "/" + path);
     }
 }

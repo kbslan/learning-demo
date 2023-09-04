@@ -1,7 +1,7 @@
 package com.kbslan.esl.service;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
-import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
 

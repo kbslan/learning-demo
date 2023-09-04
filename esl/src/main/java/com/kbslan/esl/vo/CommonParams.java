@@ -19,6 +19,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CommonParams {
+
+    /**
+     * 跟踪ID
+     */
+    private String trace;
     /**
      * 商家ID
      */

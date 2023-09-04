@@ -5,13 +5,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kbslan.domain.entity.ApStoreEntity;
 import com.kbslan.domain.service.ApStoreService;
 import com.kbslan.esl.service.PipelineFactory;
-import com.kbslan.esl.service.impl.hanshow.HanShowPipelineFactory;
 import com.kbslan.esl.vo.ApStoreQuery;
-import com.kbslan.esl.vo.PageRequest;
 import com.kbslan.esl.vo.StationParams;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Objects;
@@ -26,7 +27,7 @@ import java.util.Objects;
  * @since 2023/9/1 16:15
  */
 @RestController
-@RequestMapping("/station")
+@RequestMapping("/price/tag/station")
 public class StationController {
     @Resource
     private ApStoreService apStoreService;

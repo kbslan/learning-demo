@@ -2,16 +2,17 @@ package com.kbslan.esl.service.impl.hanshow;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
-import com.kbslan.esl.service.OkHttpService;
+import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.service.PriceTagService;
 import com.kbslan.esl.vo.PriceTagParams;
+import com.kbslan.esl.vo.PriceTagRefreshParams;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
  * <p>
- * nothing to say
+ *     汉朔价签处理逻辑
  * </p>
  *
  * @author chao.lan
@@ -22,7 +23,10 @@ import javax.annotation.Resource;
 public class HanShowPriceTagServiceImpl implements PriceTagService {
 
     @Resource
-    private OkHttpService okHttpService;
+    private HanShowApiService hanShowApiService;
+    @Resource
+    private RedisUtils redisUtils;
+
     @Override
     public PriceTagDeviceSupplierEnum deviceSupplier() {
         return PriceTagDeviceSupplierEnum.HAN_SHOW;
@@ -30,19 +34,26 @@ public class HanShowPriceTagServiceImpl implements PriceTagService {
 
     @Override
     public boolean bind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔电子价签绑定请求..."+ params.toString());
-        return true;
+        return hanShowApiService.bindPriceTag(params, deviceEslApiModel);
     }
 
     @Override
     public boolean unbind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔电子价签解绑请求..."+ params.toString());
-        return true;
+        return hanShowApiService.unbindPriceTag(params, deviceEslApiModel);
     }
 
     @Override
-    public boolean refresh(String storeId, String priceTagId, Object data, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔电子价签刷新请求...");
-        return true;
+    public boolean refresh(PriceTagRefreshParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
+        return hanShowApiService.refresh(params, deviceEslApiModel);
+    }
+
+    @Override
+    public void heartbeat(String json) throws Exception {
+
+    }
+
+    @Override
+    public void callback(String json) throws Exception {
+
     }
 }

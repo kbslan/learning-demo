@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 
 /**
  * <p>
- * nothing to say
+ *     汉朔处理流程抽象工厂
  * </p>
  *
  * @author chao.lan

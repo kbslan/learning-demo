@@ -1,7 +1,7 @@
 package com.kbslan.esl.service;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
-import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +21,25 @@ import java.util.Objects;
 @Service
 public class StoreStationServiceFactory {
 
-    private static final EnumMap<PriceTagDeviceSupplierEnum, StoreStationService> PARSERS = new EnumMap<>(PriceTagDeviceSupplierEnum.class);
+    private static final EnumMap<PriceTagDeviceSupplierEnum, StoreStationService> SERVICES = new EnumMap<>(PriceTagDeviceSupplierEnum.class);
 
     public StoreStationServiceFactory(ObjectProvider<List<StoreStationService>> objectProvider) {
         for (final StoreStationService parser : Objects.requireNonNull(objectProvider.getIfAvailable())) {
-            PARSERS.put(Objects.requireNonNull(parser.deviceSupplier()), parser);
+            SERVICES.put(Objects.requireNonNull(parser.deviceSupplier()), parser);
         }
     }
 
     public StoreStationService get(PriceTagDeviceSupplierEnum deviceSupplierEnum) {
-        return PARSERS.get(deviceSupplierEnum);
+        return SERVICES.get(deviceSupplierEnum);
     }
 
     public StoreStationService create(PriceTagDeviceSupplierEnum deviceSupplierEnum) {
-        StoreStationService parser;
+        StoreStationService service;
         if (Objects.requireNonNull(deviceSupplierEnum) == PriceTagDeviceSupplierEnum.HAN_SHOW) {
-            parser = this.get(deviceSupplierEnum);
+            service = this.get(deviceSupplierEnum);
         } else {
             throw new UnsupportedOperationException(EslNoticeMessage.DEVICE_API_PARSER_NOT_FOUNT);
         }
-        return parser;
+        return service;
     }
 }

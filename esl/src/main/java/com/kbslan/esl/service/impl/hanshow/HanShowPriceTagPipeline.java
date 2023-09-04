@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * nothing to say
+ *     汉朔电子价签处理流程
  * </p>
  *
  * @author chao.lan

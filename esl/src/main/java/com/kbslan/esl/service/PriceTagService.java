@@ -3,6 +3,7 @@ package com.kbslan.esl.service;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.vo.PriceTagParams;
+import com.kbslan.esl.vo.PriceTagRefreshParams;
 
 /**
  * <p>
@@ -47,12 +48,28 @@ public interface PriceTagService {
     /**
      * 刷新电子价签
      *
-     * @param storeId           门店ID
-     * @param priceTagId        电子价签ID
-     * @param data              刷新数据
+     * @param params            刷新参数
      * @param deviceEslApiModel 厂商ESL服务接口模型
      * @return 是否刷新成功
      * @throws Exception 刷新异常
      */
-    boolean refresh(String storeId, String priceTagId, Object data, DeviceEslApiModel deviceEslApiModel) throws Exception;
+    boolean refresh(PriceTagRefreshParams params, DeviceEslApiModel deviceEslApiModel) throws Exception;
+
+
+    /**
+     * 基站心跳处理逻辑
+     *
+     * @param json 心跳参数
+     * @throws Exception 异常
+     */
+    void heartbeat(String json) throws Exception;
+
+
+    /**
+     * 价签刷新结果回调处理逻辑
+     *
+     * @param json 回调参数
+     * @throws Exception 异常
+     */
+    void callback(String json) throws Exception;
 }

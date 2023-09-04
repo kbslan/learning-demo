@@ -11,7 +11,7 @@ import com.kbslan.domain.service.PriceTagInfoService;
 import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.rpc.StoreSkuListVO;
 import com.kbslan.esl.rpc.WareClientRpc;
-import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import com.kbslan.esl.vo.PriceTagParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -89,6 +89,9 @@ public abstract class PriceTagPipeline {
                 saveSuccess = priceTagInfoService.updateById(priceTagInfoEntity);
             }
 
+            if (saveSuccess) {
+                afterBindSuccess(params);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -131,6 +134,10 @@ public abstract class PriceTagPipeline {
         try {
             updateUnBindRecord(params, priceTagInfoEntity);
             saveSuccess = priceTagInfoService.updateById(priceTagInfoEntity);
+
+            if (saveSuccess) {
+                afterUnBindSuccess(params);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -249,5 +256,23 @@ public abstract class PriceTagPipeline {
                 && CollectionUtils.isNotEmpty(params.getSkuIds())
                 && Objects.nonNull(params.getUserId())
                 && Objects.nonNull(params.getUserName());
+    }
+
+    /**
+     * 绑定成功后处理
+     *
+     * @param params 绑定参数
+     */
+    protected void afterBindSuccess(PriceTagParams params) {
+
+    }
+
+    /**
+     * 解绑成功后处理
+     *
+     * @param params 解绑参数
+     */
+    protected void afterUnBindSuccess(PriceTagParams params) {
+
     }
 }

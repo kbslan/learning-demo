@@ -21,4 +21,13 @@ public class OkHttpService {
     public String post(String url, Object data) {
         return "okhttp post: " + url;
     }
+    public String put(String url, Object data) {
+        return "okhttp put: " + url;
+    }
+    public String delete(String url) {
+        return delete(url, null);
+    }
+    public String delete(String url, Object data) {
+        return "okhttp put: " + url;
+    }
 }

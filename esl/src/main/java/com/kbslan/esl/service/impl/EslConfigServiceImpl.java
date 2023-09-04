@@ -11,7 +11,7 @@ import com.kbslan.domain.model.EslServiceConfigModel;
 import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.service.*;
-import com.kbslan.esl.service.notice.EslNoticeMessage;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import com.kbslan.esl.vo.CommonParams;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -94,6 +94,7 @@ public class EslConfigServiceImpl implements EslConfigService {
                 .bindingPriceTagUrl(parser.parseBindingPriceTagUrl(eslServiceConfigModel))
                 .unbindingPriceTagUrl(parser.parseUnbindingPriceTagUrl(eslServiceConfigModel))
                 .refreshPriceTagUrl(parser.parseRefreshPriceTagUrl(eslServiceConfigModel))
+                .callbackUrl(parser.parseCallbackUrl(eslServiceConfigModel))
                 .extra(eslServiceConfigModel.getExtra())
                 .build();
     }
@@ -112,7 +113,7 @@ public class EslConfigServiceImpl implements EslConfigService {
         }
 
         // 2. 调用厂商服务获取token
-        String result = okHttpService.post(deviceEslApiModel.getLoginUrl(), deviceEslApiModel.getUserName());
+        String result = okHttpService.post(deviceEslApiModel.getLoginUrl().toString(), deviceEslApiModel.getUserName());
         // 3. 如果token不存在，则抛出异常
         if (StringUtils.isBlank(result)) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_LOGIN_ERROR);

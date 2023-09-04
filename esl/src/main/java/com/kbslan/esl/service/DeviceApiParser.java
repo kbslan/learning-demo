@@ -2,6 +2,7 @@ package com.kbslan.esl.service;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.EslServiceConfigModel;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * <p>
@@ -28,7 +29,7 @@ public interface DeviceApiParser {
      * @return 健康检查URL
      * @throws Exception 解析异常
      */
-    String parseEslHealthUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseEslHealthUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 
     /**
      * 解析登录URL
@@ -37,7 +38,7 @@ public interface DeviceApiParser {
      * @return 登录URL
      * @throws Exception 解析异常
      */
-    String parseLoginUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseLoginUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 
     /**
      * 解析绑定基站URL
@@ -46,7 +47,7 @@ public interface DeviceApiParser {
      * @return 绑定基站URL
      * @throws Exception 解析异常
      */
-    String parseBindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseBindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 
     /**
      * 解析解绑基站URL
@@ -55,7 +56,7 @@ public interface DeviceApiParser {
      * @return 解绑基站URL
      * @throws Exception 解析异常
      */
-    String parseUnbindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseUnbindingStationUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 
     /**
      * 解析刷新价签URL
@@ -64,7 +65,7 @@ public interface DeviceApiParser {
      * @return 刷新价签URL
      * @throws Exception 解析异常
      */
-    String parseBindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseBindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 
     /**
      * 解析解绑价签URL
@@ -73,7 +74,7 @@ public interface DeviceApiParser {
      * @return 解绑价签URL
      * @throws Exception 解析异常
      */
-    String parseUnbindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseUnbindingPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 
     /**
      * 解析刷新价签URL
@@ -82,5 +83,14 @@ public interface DeviceApiParser {
      * @return 刷新价签URL
      * @throws Exception 解析异常
      */
-    String parseRefreshPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+    UriComponentsBuilder parseRefreshPriceTagUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
+
+    /**
+     * 解析刷新价签回调URL
+     *
+     * @param eslServiceConfigModel 配置信息
+     * @return 刷新价签回调URL
+     * @throws Exception 解析异常
+     */
+    UriComponentsBuilder parseCallbackUrl(EslServiceConfigModel eslServiceConfigModel) throws Exception;
 }

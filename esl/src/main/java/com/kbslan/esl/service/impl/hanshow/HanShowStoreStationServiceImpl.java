@@ -2,26 +2,27 @@ package com.kbslan.esl.service.impl.hanshow;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
-import com.kbslan.esl.service.OkHttpService;
 import com.kbslan.esl.service.StoreStationService;
 import com.kbslan.esl.vo.StationParams;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
  * <p>
- * nothing to say
+ *     汉朔基站处理逻辑
  * </p>
  *
  * @author chao.lan
  * @version 1.0.0
  * @since 2023/8/31 22:55
  */
+@Slf4j
 @Service
 public class HanShowStoreStationServiceImpl implements StoreStationService {
     @Resource
-    private OkHttpService okHttpService;
+    private HanShowApiService hanShowApiService;
 
     @Override
     public PriceTagDeviceSupplierEnum deviceSupplier() {
@@ -30,13 +31,16 @@ public class HanShowStoreStationServiceImpl implements StoreStationService {
 
     @Override
     public boolean bind(StationParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔基站绑定请求..." + params.toString());
-        return true;
+        return hanShowApiService.bindStation(params, deviceEslApiModel);
     }
 
     @Override
     public boolean unbind(StationParams params, DeviceEslApiModel deviceEslApiModel) throws Exception {
-        okHttpService.get("汉朔基站解绑请求..." + params.toString());
-        return true;
+        return hanShowApiService.unbindStation(params, deviceEslApiModel);
+    }
+
+    @Override
+    public void heartbeat(String json) throws Exception {
+
     }
 }
