@@ -26,6 +26,20 @@ public class PriceTagInfoQuery extends PageRequest {
      * 门店ID
      */
     private Long storeId;
+    /**
+     * 设备厂商
+     */
+    private String deviceSupplier;
+
+    /**
+     * 操作来源
+     */
+    private String bingingSource;
+
+    /**
+     * 原始价签ID
+     */
+    private String originPriceTagId;
 
     /**
      * 电子价签ID

@@ -31,7 +31,7 @@ import java.util.function.Predicate;
  * @since 2023/9/1 10:34
  */
 @Slf4j
-public abstract class StationPipeline implements Predicate<StationRequest>,
+public abstract class StationPipeline implements Predicate<StationParams>,
         Function<StationRequest, StationParams>, DeviceLifeCycle<StationParams> {
     //门店有效基站key
     public static final String HAS_VALID_STORE_KEY = "storeStationValid:%d";
@@ -63,25 +63,28 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
      */
     @Override
     public StationParams apply(StationRequest request) {
-        return stationRequestConvertStationParams.apply(request);
+        StationParams params = stationRequestConvertStationParams.apply(request);
+        String key = String.format(STORE_STATION_SID_KEY, params.getStoreId());
+        params.setSid(String.join("-", String.valueOf(params.getStoreId()), String.valueOf(eslConfigService.getSid(key))));
+        return params;
     }
 
     /**
      * 参数校验
      *
-     * @param request 参数
+     * @param params 参数
      * @return 校验结果
      */
     @Override
-    public boolean test(StationRequest request) {
-        return Objects.nonNull(request)
-                && Objects.nonNull(request.getVendorId())
-                && Objects.nonNull(request.getStoreId())
-                && Objects.nonNull(request.getDeviceSupplier())
-                && StringUtils.isNotBlank(request.getOriginAp())
-                && Objects.nonNull(request.getUserId())
-                && Objects.nonNull(request.getUserName())
-                && Objects.nonNull(request.getBingingSource());
+    public boolean test(StationParams params) {
+        return Objects.nonNull(params)
+                && Objects.nonNull(params.getVendorId())
+                && Objects.nonNull(params.getStoreId())
+                && Objects.nonNull(params.getDeviceSupplier())
+                && StringUtils.isNotBlank(params.getOriginAp())
+                && Objects.nonNull(params.getUserId())
+                && Objects.nonNull(params.getUserName())
+                && Objects.nonNull(params.getBingingSource());
     }
 
     /**
@@ -92,14 +95,15 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
      * @throws Exception 绑定异常
      */
     public boolean bind(StationRequest request) throws Exception {
+        //参数转换处理
+        StationParams params = apply(request);
+
         //参数校验
-        boolean bindingCheck = test(request);
+        boolean bindingCheck = test(params);
         if (!bindingCheck) {
             throw new IllegalArgumentException(EslNoticeMessage.STATION_BIND_PARAMS_MISSING);
         }
 
-        //参数转换处理
-        StationParams params = apply(request);
 
         ApStoreEntity apStoreEntity = queryApStoreEntity(params);
 
@@ -135,9 +139,14 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
         beforeBind(params, deviceEslApiModel);
 
         //绑定基站
-        boolean bindingSuccess = storeStationServiceFactory.create(params.getDeviceSupplier()).bind(params, deviceEslApiModel);
+        try {
+            boolean bindingSuccess = storeStationServiceFactory.create(params.getDeviceSupplier()).bind(params, deviceEslApiModel);
 
-        if (!bindingSuccess) {
+            if (!bindingSuccess) {
+                throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
+            }
+        } catch (Exception e) {
+            log.error("调用厂商API绑定基站失败 params={}", params, e);
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
 
@@ -185,13 +194,14 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
      * @throws Exception 解绑异常
      */
     public boolean unbind(StationRequest request) throws Exception {
+        //参数转换处理
+        StationParams params = apply(request);
+
         //参数校验
-        boolean unbindCheck = test(request);
+        boolean unbindCheck = test(params);
         if (!unbindCheck) {
             throw new IllegalArgumentException(EslNoticeMessage.STATION_UNBIND_PARAMS_MISSING);
         }
-        //参数转换处理
-        StationParams params = apply(request);
 
         ApStoreEntity apStoreEntity = queryApStoreEntity(params);
 
@@ -220,8 +230,14 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
         //调用厂商接口前处理逻辑
         beforeUnbind(params, deviceEslApiModel);
 
-        boolean unbindingSuccess = storeStationServiceFactory.create(params.getDeviceSupplier()).unbind(params, deviceEslApiModel);
-        if (!unbindingSuccess) {
+        //解绑基站
+        try {
+            boolean unbindingSuccess = storeStationServiceFactory.create(params.getDeviceSupplier()).unbind(params, deviceEslApiModel);
+            if (!unbindingSuccess) {
+                throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
+            }
+        } catch (Exception e) {
+            log.error("调用厂商API解绑基站失败 params={}", params, e);
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
 

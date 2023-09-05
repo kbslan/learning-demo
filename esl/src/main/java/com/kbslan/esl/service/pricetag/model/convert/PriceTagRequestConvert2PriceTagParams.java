@@ -1,7 +1,11 @@
 package com.kbslan.esl.service.pricetag.model.convert;
 
+import com.kbslan.domain.enums.PriceTagBingingSourceEnum;
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
+import com.kbslan.domain.enums.PriceTagDeviceTypeEnum;
 import com.kbslan.esl.service.pricetag.model.PriceTagParams;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -25,14 +29,14 @@ public class PriceTagRequestConvert2PriceTagParams implements Function<PriceTagR
         params.setOriginPriceTagId(request.getOriginPriceTagId());
         params.setPriceTagId(request.getOriginPriceTagId());
         params.setSkuIds(request.getSkuIds());
-        params.setDeviceType(request.getDeviceType());
+        params.setDeviceType(StringUtils.isBlank(request.getDeviceType()) ? PriceTagDeviceTypeEnum.EPD : PriceTagDeviceTypeEnum.get(request.getDeviceType()));
         params.setSid(request.getTrace());
         params.setVendorId(request.getVendorId());
         params.setStoreId(request.getStoreId());
-        params.setDeviceSupplier(request.getDeviceSupplier());
+        params.setDeviceSupplier(PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier()));
         params.setUserId(request.getUserId());
         params.setUserName(request.getUserName());
-        params.setBingingSource(request.getBingingSource());
+        params.setBingingSource(PriceTagBingingSourceEnum.get(request.getBingingSource()));
         return params;
     }
 }

@@ -3,6 +3,7 @@ package com.kbslan.esl.controller;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kbslan.domain.entity.PriceTagInfoEntity;
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.service.PriceTagInfoService;
 import com.kbslan.esl.service.EslConfigService;
 import com.kbslan.esl.service.pricetag.PipelineFactory;
@@ -14,7 +15,6 @@ import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,13 +51,16 @@ public class PriceTagController {
      * @return 电子价签列表
      */
     @PostMapping("/page")
-    public DataResponseJson page(@RequestBody PriceTagInfoQuery query) {
+    public DataResponseJson page(PriceTagInfoQuery query) {
 
         Page<PriceTagInfoEntity> page = priceTagInfoService.page(
                 new Page<>(query.getCurrent(), query.getSize()),
                 Wrappers.<PriceTagInfoEntity>lambdaQuery()
                         .eq(PriceTagInfoEntity::getVendorId, query.getVendorId())
                         .eq(PriceTagInfoEntity::getStoreId, query.getStoreId())
+                        .eq(StringUtils.isNotBlank(query.getDeviceSupplier()), PriceTagInfoEntity::getDeviceSupplier, query.getDeviceSupplier())
+                        .eq(StringUtils.isNotBlank(query.getBingingSource()), PriceTagInfoEntity::getBingingSource, query.getBingingSource())
+                        .eq(StringUtils.isNotBlank(query.getOriginPriceTagId()), PriceTagInfoEntity::getOriginPriceTagId, query.getOriginPriceTagId())
                         .eq(StringUtils.isNotBlank(query.getPriceTagId()), PriceTagInfoEntity::getPriceTagId, query.getPriceTagId())
                         .eq(Objects.nonNull(query.getYn()), PriceTagInfoEntity::getYn, query.getYn()));
         return DataResponseJson.ok(page);
@@ -71,8 +74,9 @@ public class PriceTagController {
      * @throws Exception 绑定异常
      */
     @PostMapping("/bind")
-    public DataResponseJson bind(@RequestBody PriceTagRequest request) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(request.getDeviceSupplier()).bind(request));
+    public DataResponseJson bind(PriceTagRequest request) throws Exception {
+        PriceTagDeviceSupplierEnum deviceSupplier = PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier());
+        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(deviceSupplier).bind(request));
     }
 
     /**
@@ -83,8 +87,9 @@ public class PriceTagController {
      * @throws Exception 解绑异常
      */
     @PostMapping("/unbind")
-    public DataResponseJson unbind(@RequestBody PriceTagRequest request) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(request.getDeviceSupplier()).unbind(request));
+    public DataResponseJson unbind(PriceTagRequest request) throws Exception {
+        PriceTagDeviceSupplierEnum deviceSupplier = PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier());
+        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(deviceSupplier).unbind(request));
     }
 
     /**
@@ -94,11 +99,11 @@ public class PriceTagController {
      * @return 刷新结果
      * @throws Exception 刷新异常
      */
-    public DataResponseJson refresh(@RequestBody PriceTagRefreshRequest request) throws Exception {
-
-        return DataResponseJson.ok(priceTagServiceFactory.create(request.getDeviceSupplier())
+    public DataResponseJson refresh(PriceTagRefreshRequest request) throws Exception {
+        PriceTagDeviceSupplierEnum deviceSupplier = PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier());
+        return DataResponseJson.ok(priceTagServiceFactory.create(deviceSupplier)
                 .refresh(priceTagRefreshRequestConvert2PriceTagRefreshParams.apply(request),
-                        eslConfigService.queryAndParseEslConfig(request.getStoreId(), request.getDeviceSupplier())
+                        eslConfigService.queryAndParseEslConfig(request.getStoreId(), deviceSupplier)
                 ));
     }
 }

@@ -3,6 +3,7 @@ package com.kbslan.esl.controller;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kbslan.domain.entity.ApStoreEntity;
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.service.ApStoreService;
 import com.kbslan.esl.service.pricetag.PipelineFactory;
 import com.kbslan.esl.vo.request.ApStoreQuery;
@@ -10,7 +11,6 @@ import com.kbslan.esl.vo.request.pricetag.StationRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,13 +41,14 @@ public class StationController {
      * @return 基站列表
      */
     @PostMapping("/page")
-    public DataResponseJson page(@RequestBody ApStoreQuery query) {
+    public DataResponseJson page(ApStoreQuery query) {
         Page<ApStoreEntity> page = apStoreService.page(
                 new Page<>(query.getCurrent(), query.getSize()),
                 Wrappers.<ApStoreEntity>lambdaQuery()
                         .eq(ApStoreEntity::getVendorId, query.getVendorId())
                         .eq(ApStoreEntity::getStoreId, query.getStoreId())
                         .eq(Objects.nonNull(query.getYn()), ApStoreEntity::getYn, query.getYn())
+                        .eq(StringUtils.isNotBlank(query.getOriginAp()), ApStoreEntity::getOriginAp, query.getOriginAp())
                         .eq(StringUtils.isNotBlank(query.getApMac()), ApStoreEntity::getApMac, query.getApMac())
         );
         return DataResponseJson.ok(page);
@@ -62,8 +63,9 @@ public class StationController {
      * @throws Exception 绑定异常
      */
     @PostMapping("/bind")
-    public DataResponseJson bind(@RequestBody StationRequest request) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createStationPipeline(request.getDeviceSupplier()).bind(request));
+    public DataResponseJson bind(StationRequest request) throws Exception {
+        PriceTagDeviceSupplierEnum deviceSupplier = PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier());
+        return DataResponseJson.ok(pipelineFactory.createStationPipeline(deviceSupplier).bind(request));
     }
 
     /**
@@ -74,7 +76,8 @@ public class StationController {
      * @throws Exception 解绑异常
      */
     @PostMapping("/unbind")
-    public DataResponseJson unbind(@RequestBody StationRequest request) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createStationPipeline(request.getDeviceSupplier()).unbind(request));
+    public DataResponseJson unbind(StationRequest request) throws Exception {
+        PriceTagDeviceSupplierEnum deviceSupplier = PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier());
+        return DataResponseJson.ok(pipelineFactory.createStationPipeline(deviceSupplier).unbind(request));
     }
 }

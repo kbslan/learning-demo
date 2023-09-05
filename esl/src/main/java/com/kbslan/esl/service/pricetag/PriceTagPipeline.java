@@ -1,6 +1,5 @@
 package com.kbslan.esl.service.pricetag;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kbslan.domain.entity.PriceTagInfoEntity;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
@@ -37,8 +36,10 @@ import java.util.function.Predicate;
  * @since 2023/9/1 10:34
  */
 @Slf4j
-public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
+public abstract class PriceTagPipeline implements Predicate<PriceTagParams>,
         Function<PriceTagRequest, PriceTagParams>, DeviceLifeCycle<PriceTagParams> {
+
+    public static final String STORE_PRICE_TAG_SID_KEY = "storePriceTagSid:%d";
     @Resource
     private EslConfigService eslConfigService;
     @Resource
@@ -65,19 +66,28 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
 
     @Override
     public PriceTagParams apply(PriceTagRequest request) {
-        return priceTagRequestConvert2PriceTagParams.apply(request);
+        PriceTagParams params = priceTagRequestConvert2PriceTagParams.apply(request);
+        String key = String.format(STORE_PRICE_TAG_SID_KEY, params.getStoreId());
+        params.setSid(String.join("-", String.valueOf(params.getStoreId()), String.valueOf(eslConfigService.getSid(key))));
+        return params;
     }
 
+    /**
+     * 参数校验
+     *
+     * @param params 参数
+     * @return 校验结果
+     */
     @Override
-    public boolean test(PriceTagRequest request) {
-        return Objects.nonNull(request)
-                && Objects.nonNull(request.getDeviceSupplier())
-                && Objects.nonNull(request.getVendorId())
-                && Objects.nonNull(request.getStoreId())
-                && StringUtils.isNotBlank(request.getOriginPriceTagId())
-                && CollectionUtils.isNotEmpty(request.getSkuIds())
-                && Objects.nonNull(request.getUserId())
-                && Objects.nonNull(request.getUserName());
+    public boolean test(PriceTagParams params) {
+        return Objects.nonNull(params)
+                && Objects.nonNull(params.getDeviceSupplier())
+                && Objects.nonNull(params.getVendorId())
+                && Objects.nonNull(params.getStoreId())
+                && StringUtils.isNotBlank(params.getOriginPriceTagId())
+                && CollectionUtils.isNotEmpty(params.getSkuIds())
+                && Objects.nonNull(params.getUserId())
+                && Objects.nonNull(params.getUserName());
     }
 
     /**
@@ -88,14 +98,14 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
      * @throws Exception 绑定异常
      */
     public boolean bind(PriceTagRequest request) throws Exception {
+        //参数转换处理
+        PriceTagParams params = apply(request);
+
         //参数校验
-        boolean bindingCheck = test(request);
+        boolean bindingCheck = test(params);
         if (!bindingCheck) {
             throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_BIND_PARAMS_MISSING);
         }
-
-        //参数转换处理
-        PriceTagParams params = apply(request);
 
         PriceTagInfoEntity priceTagInfoEntity = queryPriceTagInfoEntity(params);
         if (Objects.nonNull(priceTagInfoEntity) && Objects.equals(priceTagInfoEntity.getYn(), YNEnum.YES.getCode())) {
@@ -125,8 +135,13 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
         beforeBind(params, deviceEslApiModel);
 
         //绑定价签
-        boolean bindingSuccess = priceTagServiceFactory.create(params.getDeviceSupplier()).bind(params, deviceEslApiModel);
-        if (!bindingSuccess) {
+        try {
+            boolean bindingSuccess = priceTagServiceFactory.create(params.getDeviceSupplier()).bind(params, deviceEslApiModel);
+            if (!bindingSuccess) {
+                throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
+            }
+        } catch (Exception e) {
+            log.error("调用厂商API绑定价签失败 params={}", params, e);
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
 
@@ -175,14 +190,15 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
      * @throws Exception 解绑异常
      */
     public boolean unbind(PriceTagRequest request) throws Exception {
+        //参数转换处理
+        PriceTagParams params = apply(request);
+
         //参数校验
-        boolean unbindCheck = test(request);
+        boolean unbindCheck = test(params);
         if (!unbindCheck) {
             throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_UNBIND_PARAMS_MISSING);
         }
 
-        //参数转换处理
-        PriceTagParams params = apply(request);
 
         PriceTagInfoEntity priceTagInfoEntity = queryPriceTagInfoEntity(params);
         if (Objects.isNull(priceTagInfoEntity) || Objects.equals(priceTagInfoEntity.getYn(), YNEnum.NO.getCode())) {
@@ -203,8 +219,13 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
         beforeUnbind(params, deviceEslApiModel);
 
         //解绑价签
-        boolean unbindingSuccess = priceTagServiceFactory.create(params.getDeviceSupplier()).unbind(params, deviceEslApiModel);
-        if (!unbindingSuccess) {
+        try {
+            boolean unbindingSuccess = priceTagServiceFactory.create(params.getDeviceSupplier()).unbind(params, deviceEslApiModel);
+            if (!unbindingSuccess) {
+                throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
+            }
+        } catch (Exception e) {
+            log.error("调用厂商API解绑价签失败 params={}", params, e);
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
 
@@ -265,6 +286,7 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
      */
     protected void updateBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
         priceTagInfoEntity.setYn(YNEnum.YES.getCode());
+        priceTagInfoEntity.setSkuIds(params.getSkuIds());
         priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
         priceTagInfoEntity.setModifierId(params.getUserId());
         priceTagInfoEntity.setModifierName(params.getUserName());
@@ -294,7 +316,7 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
 //        priceTagInfoEntity.setFirmwareId();
         priceTagInfoEntity.setYn(YNEnum.YES.getCode());
         //绑定商品sku列表
-        priceTagInfoEntity.setExtJson(JSON.toJSONString(params.getSkuIds()));
+        priceTagInfoEntity.setSkuIds(params.getSkuIds());
         priceTagInfoEntity.setCreatorId(params.getUserId());
         priceTagInfoEntity.setCreatorName(params.getUserName());
         priceTagInfoEntity.setCreated(LocalDateTime.now());

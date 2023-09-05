@@ -29,6 +29,11 @@ public class ApStoreQuery extends PageRequest {
     private Long storeId;
 
     /**
+     * 原始基站地址
+     */
+    private String originAp;
+
+    /**
      * 基站mac
      */
     private String apMac;

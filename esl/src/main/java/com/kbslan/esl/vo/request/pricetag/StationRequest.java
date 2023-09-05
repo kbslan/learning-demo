@@ -1,7 +1,5 @@
 package com.kbslan.esl.vo.request.pricetag;
 
-import com.kbslan.domain.enums.PriceTagBingingSourceEnum;
-import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,7 +35,7 @@ public class StationRequest implements Serializable {
     /**
      * 设备厂商
      */
-    private PriceTagDeviceSupplierEnum deviceSupplier;
+    private String deviceSupplier;
     /**
      * 原始基站mac
      */
@@ -54,5 +52,5 @@ public class StationRequest implements Serializable {
     /**
      * 操作来源
      */
-    private PriceTagBingingSourceEnum bingingSource;
+    private String bingingSource;
 }

@@ -1,5 +1,7 @@
 package com.kbslan.esl.service.pricetag.model.convert;
 
+import com.kbslan.domain.enums.PriceTagBingingSourceEnum;
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.esl.service.pricetag.model.StationParams;
 import com.kbslan.esl.vo.request.pricetag.StationRequest;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,11 @@ public class StationRequestConvertStationParams implements Function<StationReque
         StationParams params = new StationParams();
         params.setVendorId(request.getVendorId());
         params.setStoreId(request.getStoreId());
-        params.setDeviceSupplier(request.getDeviceSupplier());
+        params.setDeviceSupplier(PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier()));
         params.setOriginAp(request.getOriginAp());
         params.setUserId(request.getUserId());
         params.setUserName(request.getUserName());
-        params.setBingingSource(request.getBingingSource());
+        params.setBingingSource(PriceTagBingingSourceEnum.get(request.getBingingSource()));
         params.setApMac(request.getOriginAp());
         params.setSid(request.getTrace());
         return params;

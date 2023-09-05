@@ -66,10 +66,10 @@ public class DisplaySystemConsumerHandler /* extends AbsMessageHandler<DisplaySy
                 request.setTrace(UUID.randomUUID().toString().replace("-", ""));
                 request.setVendorId(data.getVenderId());
                 request.setStoreId(data.getShopId());
-                request.setDeviceSupplier(deviceSupplier);
+                request.setDeviceSupplier(deviceSupplier.getCode());
                 request.setUserId(-1L);
                 request.setUserName("displaySystem");
-                request.setBingingSource(PriceTagBingingSourceEnum.DISPLAY_MQ);
+                request.setBingingSource(PriceTagBingingSourceEnum.DISPLAY_MQ.getCode());
                 request.setNeedPush(true);
                 request.setOriginPriceTagId(data.getEslId());
                 request.setSkuIds(Collections.singletonList(data.getSkuId()));

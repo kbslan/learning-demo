@@ -1,16 +1,17 @@
 package com.kbslan.domain.entity;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
+import com.kbslan.domain.model.PriceTagInfoExtJson;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -106,7 +107,8 @@ public class PriceTagInfoEntity implements Serializable {
     /**
      * 商品信息
      */
-    private String extJson;
+    @TableField(value = "ext_json", typeHandler = FastjsonTypeHandler.class)
+    private PriceTagInfoExtJson extJson;
 
     /**
      * 创建人ID
@@ -144,11 +146,17 @@ public class PriceTagInfoEntity implements Serializable {
      * @return skuId列表
      */
     public List<Long> getSkuIds() {
-        if (StringUtils.isBlank(this.extJson)) {
+        if (Objects.isNull(this.extJson)) {
             return Collections.emptyList();
         }
+        return this.extJson.getSkuIds();
+    }
 
-        return JSON.parseArray(this.extJson, Long.class);
+    public void setSkuIds(List<Long> skuIds) {
+        if (Objects.isNull(this.extJson)) {
+            this.extJson = new PriceTagInfoExtJson();
+        }
+        this.extJson.setSkuIds(skuIds);
     }
 
 

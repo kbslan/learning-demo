@@ -186,16 +186,6 @@
         <appender-ref ref="CONSOLE"/>
     </logger>
 
-    <logger name="rpc" level="${log.level}" additivity="${log.additivity}">
-<!--        <appender-ref ref="ASYNC_RPC_FILE"/>-->
-        <appender-ref ref="CONSOLE"/>
-    </logger>
-
-    <logger name="mq" level="${log.level}" additivity="${log.additivity}">
-<!--        <appender-ref ref="ASYNC_MQ_FILE"/>-->
-        <appender-ref ref="CONSOLE"/>
-    </logger>
-
     <logger name="ShardingSphere-SQL" level="${log.sql.level}" additivity="false">
 <!--        <appender-ref ref="ASYNC_SQL_FILE"/>-->
         <appender-ref ref="CONSOLE"/>

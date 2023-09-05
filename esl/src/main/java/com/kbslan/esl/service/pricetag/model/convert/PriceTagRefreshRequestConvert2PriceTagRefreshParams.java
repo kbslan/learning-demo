@@ -1,5 +1,6 @@
 package com.kbslan.esl.service.pricetag.model.convert;
 
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.esl.service.pricetag.model.PriceTagRefreshParams;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshRequest;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class PriceTagRefreshRequestConvert2PriceTagRefreshParams implements Func
     @Override
     public PriceTagRefreshParams apply(PriceTagRefreshRequest request) {
         PriceTagRefreshParams params = new PriceTagRefreshParams();
-        params.setDeviceSupplier(request.getDeviceSupplier());
+        params.setDeviceSupplier(PriceTagDeviceSupplierEnum.get(request.getDeviceSupplier()));
         params.setVendorId(request.getVendorId());
         params.setStoreId(request.getStoreId());
         params.setOriginPriceTagId(request.getOriginPriceTagId());

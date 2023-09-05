@@ -1,7 +1,5 @@
 package com.kbslan.esl.vo.request.pricetag;
 
-import com.kbslan.domain.enums.PriceTagBingingSourceEnum;
-import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.enums.PriceTagDeviceTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,7 +38,7 @@ public class PriceTagRequest implements Serializable {
     /**
      * 设备厂商
      */
-    private PriceTagDeviceSupplierEnum deviceSupplier;
+    private String deviceSupplier;
     /**
      * 用户ID
      */
@@ -53,7 +51,7 @@ public class PriceTagRequest implements Serializable {
     /**
      * 操作来源
      */
-    private PriceTagBingingSourceEnum bingingSource;
+    private String bingingSource;
     /**
      * 绑定、解绑操作成功后是否需要推送价签数据
      */
@@ -71,5 +69,5 @@ public class PriceTagRequest implements Serializable {
     /**
      * 电子价签设备类型
      */
-    private PriceTagDeviceTypeEnum deviceType = PriceTagDeviceTypeEnum.EPD;
+    private String deviceType = PriceTagDeviceTypeEnum.EPD.getCode();
 }

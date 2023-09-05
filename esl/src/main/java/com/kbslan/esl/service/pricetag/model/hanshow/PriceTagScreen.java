@@ -23,7 +23,6 @@ public class PriceTagScreen {
     /**
      * (必填) 指令的会话ID, 要求一个价签指令一条，异步返回ACK使用
      */
-    @NotNull
     private String sid;
 
     /**

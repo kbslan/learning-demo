@@ -1,6 +1,5 @@
 package com.kbslan.esl.vo.request.pricetag;
 
-import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -29,7 +28,7 @@ public class PriceTagRefreshRequest implements Serializable {
     /**
      * 设备厂商
      */
-    private PriceTagDeviceSupplierEnum deviceSupplier;
+    private String deviceSupplier;
     /**
      * 商家ID
      */
