@@ -6,7 +6,7 @@ import com.kbslan.domain.entity.ApStoreEntity;
 import com.kbslan.domain.service.ApStoreService;
 import com.kbslan.esl.service.PipelineFactory;
 import com.kbslan.esl.vo.request.ApStoreQuery;
-import com.kbslan.esl.vo.request.pricetag.StationParams;
+import com.kbslan.esl.vo.request.pricetag.StationRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,24 +57,24 @@ public class StationController {
     /**
      * 绑定基站
      *
-     * @param params 绑定参数
+     * @param request 绑定参数
      * @return 绑定结果
      * @throws Exception 绑定异常
      */
     @PostMapping("/bind")
-    public DataResponseJson bind(@RequestBody StationParams params) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createStationPipeline().bind(params));
+    public DataResponseJson bind(@RequestBody StationRequest request) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createStationPipeline(request.getDeviceSupplier()).bind(request));
     }
 
     /**
      * 解绑基站
      *
-     * @param params 解绑参数
+     * @param request 解绑参数
      * @return 解绑结果
      * @throws Exception 解绑异常
      */
     @PostMapping("/unbind")
-    public DataResponseJson unbind(@RequestBody StationParams params) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createStationPipeline().unbind(params));
+    public DataResponseJson unbind(@RequestBody StationRequest request) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createStationPipeline(request.getDeviceSupplier()).unbind(request));
     }
 }

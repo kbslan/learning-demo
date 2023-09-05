@@ -2,7 +2,7 @@ package com.kbslan.esl.vo.response.notice;
 
 /**
  * <p>
- *    电子价签错误消息提示
+ * 电子价签错误消息提示
  * </p>
  *
  * @author chao.lan
@@ -31,8 +31,12 @@ public class EslNoticeMessage {
     public static final String PRICE_TAG_BIND_PARAMS_MISSING = "电子价签绑定参数缺失";
     public static final String PRICE_TAG_BEEN_BOUNDED = "电子价签已绑定，请勿重复绑定";
     public static final String WARE_NOT_FOUND = "商品不存在 sku:%s";
+
+    public static final String STATION_BEEN_BOUNDED_BY_OTHER_SOURCE = "基站已被其他来源绑定[%s], 如需操作请先在原来源解除绑定关系!";
     public static final String PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE = "电子价签已被其他来源绑定[%s], 如需操作请先在原来源解除绑定关系!";
     public static final String PRICE_TAG_UNBIND_PARAMS_MISSING = "电子价签解绑参数缺失";
     public static final String PRICE_TAG_NONE_BEEN_BOUNDED = "电子价签未绑定, 无需解绑";
     public static final String PARSE_PRICE_TAG_CALLBACK_ERROR = "厂商电子价签刷新结果回调解析失败";
+    public static final String ESL_CONFIG_PARSE_ERROR = "厂商ESL服务配置信息错误，解析失败";
+
 }

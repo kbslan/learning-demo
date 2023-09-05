@@ -1,17 +1,18 @@
-package com.kbslan.esl.service.impl.hanshow;
+package com.kbslan.esl.service.hanshow;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.service.OkHttpService;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
-import com.kbslan.esl.vo.request.pricetag.PriceTagParams;
-import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshParams;
-import com.kbslan.esl.vo.request.pricetag.StationParams;
-import com.kbslan.esl.vo.hanshow.AllotBaseStation;
-import com.kbslan.esl.vo.hanshow.HanShowResult;
-import com.kbslan.esl.vo.hanshow.PriceTagScreen;
-import com.kbslan.esl.vo.hanshow.UnbindPriceTag;
+import com.kbslan.esl.vo.pricetag.PriceTagParams;
+import com.kbslan.esl.vo.pricetag.PriceTagRefreshParams;
+import com.kbslan.esl.vo.pricetag.StationParams;
+import com.kbslan.esl.vo.pricetag.hanshow.AllotBaseStation;
+import com.kbslan.esl.vo.pricetag.hanshow.HanShowResult;
+import com.kbslan.esl.vo.pricetag.hanshow.PriceTagScreen;
+import com.kbslan.esl.vo.pricetag.hanshow.UnbindPriceTag;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,7 +36,7 @@ public class HanShowApiService {
 
 
     public boolean bindStation(StationParams params, DeviceEslApiModel deviceEslApiModel) {
-        if (Objects.isNull(params) || Objects.isNull(params.getApMac())
+        if (Objects.isNull(params) || StringUtils.isBlank(params.getApMac())
                 || Objects.isNull(params.getStoreId()) || Objects.isNull(deviceEslApiModel)
                 || Objects.isNull(deviceEslApiModel.getBindingStationUrl())) {
             throw new IllegalArgumentException(EslNoticeMessage.STATION_BIND_PARAMS_MISSING);
@@ -74,7 +75,7 @@ public class HanShowApiService {
         //{user}/esls/bind DELETE 批量解绑价签
         UnbindPriceTag unbindPriceTag = new UnbindPriceTag();
         unbindPriceTag.setPriceTagId(params.getPriceTagId());
-        unbindPriceTag.setSid(params.getTrace());
+        unbindPriceTag.setSid(params.getSid());
         String url = deviceEslApiModel.getUnbindingPriceTagUrl().buildAndExpand(params.getStoreId()).toUriString();
 
         String result = okHttpService.delete(url, Collections.singleton(unbindPriceTag));

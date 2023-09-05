@@ -3,7 +3,7 @@ package com.kbslan.esl.service;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.model.EslServiceConfigModel;
-import com.kbslan.esl.vo.request.pricetag.CommonParams;
+import com.kbslan.esl.vo.pricetag.CommonParams;
 
 import java.util.Map;
 
@@ -29,7 +29,7 @@ public interface EslConfigService {
      * @return 设备厂商code -> 门店配置信息
      * @throws Exception 查询异常
      */
-    Map<String, EslServiceConfigModel> query(Long storeId) throws Exception;
+    Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> query(Long storeId) throws Exception;
 
     /**
      * <p>
@@ -40,7 +40,7 @@ public interface EslConfigService {
      * @return 设备厂商 -> 厂商ESL服务接口模型
      * @throws Exception 解析异常
      */
-    Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parse(Map<String, EslServiceConfigModel> eslServiceConfigModelMap) throws Exception;
+    Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parse(Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> eslServiceConfigModelMap) throws Exception;
 
 
     /**
@@ -72,5 +72,22 @@ public interface EslConfigService {
      * @return 厂商ESL服务接口模型
      * @throws Exception 查询异常
      */
-    DeviceEslApiModel queryAndParseEslConfigByDeviceSupplier(CommonParams params) throws Exception;
+    DeviceEslApiModel queryAndParseEslConfig(CommonParams params) throws Exception;
+
+
+    /**
+     * 获取Sid
+     *
+     * @param key redis key
+     * @return sid
+     */
+    long getSid(String key);
+
+    /**
+     * 是否需要检查绑定来源
+     *
+     * @param storeId 门店ID
+     * @return true: 需要检查绑定来源 false: 不需要检查绑定来源
+     */
+    boolean isNeedCheckBindingSource(Long storeId);
 }

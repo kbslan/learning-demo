@@ -2,9 +2,9 @@ package com.kbslan.esl.service.impl.hanshow;
 
 import com.alibaba.fastjson.JSON;
 import com.kbslan.esl.config.RedisUtils;
-import com.kbslan.esl.service.HanShowApHeartbeatHandleService;
-import com.kbslan.esl.vo.hanshow.HanShowResult;
-import com.kbslan.esl.vo.hanshow.PassiveAPHeartbeat;
+import com.kbslan.esl.service.hanshow.HanShowApHeartbeatHandleService;
+import com.kbslan.esl.vo.pricetag.hanshow.HanShowResult;
+import com.kbslan.esl.vo.pricetag.hanshow.PassiveAPHeartbeat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ import java.util.Objects;
 @Service
 public class HanShowApHeartbeatHandleServiceImpl implements HanShowApHeartbeatHandleService {
 
-    private static final String AP_STATUS_KEY = "pricetag:hanshow:ap-status:%s:%d";
+    private static final String AP_STATUS_KEY = "pricetag:hanshow:ap-status:%s:%s";
 
     private final List<HanShowApHeartbeatHandleService.ApStatusChangedListener> apStatusChangedListeners = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class HanShowApHeartbeatHandleServiceImpl implements HanShowApHeartbeatHa
 
         try {
             for (PassiveAPHeartbeat apHeartbeat : result.getData()) {
-                final String key = String.format(AP_STATUS_KEY, apHeartbeat.getUser(), apHeartbeat.getApId());
+                final String key = String.format(AP_STATUS_KEY, apHeartbeat.getUser(), apHeartbeat.getMac());
                 final String value = JSON.toJSONString(apHeartbeat);
                 switch (apHeartbeat.getStatus()) {
                     case HanShowResult.STATUS_OFFLINE: {

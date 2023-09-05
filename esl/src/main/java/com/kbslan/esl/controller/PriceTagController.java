@@ -6,10 +6,13 @@ import com.kbslan.domain.entity.PriceTagInfoEntity;
 import com.kbslan.domain.service.PriceTagInfoService;
 import com.kbslan.esl.service.PipelineFactory;
 import com.kbslan.esl.vo.request.PriceTagInfoQuery;
-import com.kbslan.esl.vo.request.pricetag.PriceTagParams;
+import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Objects;
@@ -53,24 +56,24 @@ public class PriceTagController {
     /**
      * 绑定电子价签
      *
-     * @param params 绑定参数
+     * @param request 绑定参数
      * @return 绑定结果
      * @throws Exception 绑定异常
      */
     @PostMapping("/bind")
-    public DataResponseJson bind(@RequestBody PriceTagParams params) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().bind(params));
+    public DataResponseJson bind(@RequestBody PriceTagRequest request) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(request.getDeviceSupplier()).bind(request));
     }
 
     /**
      * 解绑电子价签
      *
-     * @param params 解绑参数
+     * @param request 解绑参数
      * @return 解绑结果
      * @throws Exception 解绑异常
      */
     @PostMapping("/unbind")
-    public DataResponseJson unbind(@RequestBody PriceTagParams params) throws Exception {
-        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline().unbind(params));
+    public DataResponseJson unbind(@RequestBody PriceTagRequest request) throws Exception {
+        return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(request.getDeviceSupplier()).unbind(request));
     }
 }

@@ -2,8 +2,8 @@ package com.kbslan.esl.service;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
-import com.kbslan.esl.vo.request.pricetag.PriceTagParams;
-import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshParams;
+import com.kbslan.esl.vo.pricetag.PriceTagParams;
+import com.kbslan.esl.vo.pricetag.PriceTagRefreshParams;
 
 /**
  * <p>

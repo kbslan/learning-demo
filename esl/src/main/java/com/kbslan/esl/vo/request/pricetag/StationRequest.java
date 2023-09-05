@@ -6,20 +6,22 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * <p>
- *     公共参数
+ *     基站页面请求参数
  * </p>
  *
  * @author chao.lan
  * @version 1.0.0
- * @since 2023/9/1 17:35
+ * @since 2023/9/5 15:08
  */
 @Getter
 @Setter
 @ToString
-public class CommonParams {
-
+public class StationRequest implements Serializable {
+    private static final long serialVersionUID = -7243539319914871735L;
     /**
      * 跟踪ID
      */
@@ -35,7 +37,11 @@ public class CommonParams {
     /**
      * 设备厂商
      */
-    private String deviceSupplier;
+    private PriceTagDeviceSupplierEnum deviceSupplier;
+    /**
+     * 原始基站mac
+     */
+    private String originAp;
     /**
      * 用户ID
      */
@@ -48,13 +54,5 @@ public class CommonParams {
     /**
      * 操作来源
      */
-    private String bingingSource = PriceTagBingingSourceEnum.PRICE_TAG_APP.getCode();
-
-    public PriceTagDeviceSupplierEnum getDeviceSupplier() {
-        return PriceTagDeviceSupplierEnum.get(deviceSupplier);
-    }
-
-    public PriceTagBingingSourceEnum getBingingSource() {
-        return PriceTagBingingSourceEnum.get(bingingSource);
-    }
+    private PriceTagBingingSourceEnum bingingSource;
 }

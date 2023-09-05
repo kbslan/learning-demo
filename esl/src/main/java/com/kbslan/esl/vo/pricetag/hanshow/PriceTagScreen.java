@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo.hanshow;
+package com.kbslan.esl.vo.pricetag.hanshow;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Getter;

@@ -6,10 +6,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kbslan.domain.entity.PriceTagInfoEntity;
 import com.kbslan.domain.service.PriceTagInfoService;
 import com.kbslan.esl.config.RedisUtils;
-import com.kbslan.esl.service.HanShowApHeartbeatHandleService;
-import com.kbslan.esl.vo.hanshow.HanShowResult;
-import com.kbslan.esl.vo.hanshow.PassiveAPHeartbeat;
-import com.kbslan.esl.vo.hanshow.UpdatePriceTagResult;
+import com.kbslan.esl.service.hanshow.HanShowApHeartbeatHandleService;
+import com.kbslan.esl.service.hanshow.HanShowPriceTagUpdateResultHandleService;
+import com.kbslan.esl.vo.pricetag.hanshow.HanShowResult;
+import com.kbslan.esl.vo.pricetag.hanshow.PassiveAPHeartbeat;
+import com.kbslan.esl.vo.pricetag.hanshow.UpdatePriceTagResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
@@ -36,7 +37,7 @@ import java.util.concurrent.Executors;
 public class ApOfflinePriceTagUpdateResultHandleListener implements HanShowPriceTagUpdateResultHandleService.PriceTagUpdateResultHandleListener,
         HanShowApHeartbeatHandleService.ApStatusChangedListener {
 
-    private static final String KEY = "price-tag:hanshow-ap-offline:user:%s:ap:%d";
+    private static final String KEY = "price-tag:hanshow-ap-offline:user:%s:ap:%s";
 
     @Resource
     private RedisUtils redisUtils;
@@ -59,7 +60,7 @@ public class ApOfflinePriceTagUpdateResultHandleListener implements HanShowPrice
         try {
             for (UpdatePriceTagResult priceTagResult : result.getData()) {
                 if (HANDLE_STATUS_NOS.contains(priceTagResult.getStatusNo())) {
-                    final String key = getKey(result.getUser(), priceTagResult.getApId());
+                    final String key = getKey(result.getUser(), priceTagResult.getApMac());
                     final Long size = redisUtils.set.sadd(key, priceTagResult.getEslId());
                     if (log.isInfoEnabled()) {
                         log.info("price-tag update failure: value={},size={}", JSON.toJSONString(priceTagResult), size);
@@ -76,7 +77,7 @@ public class ApOfflinePriceTagUpdateResultHandleListener implements HanShowPrice
         if (HanShowResult.STATUS_ONLINE.equals(apHeartbeat.getStatus())) {
             try {
                 // changed status to online
-                final String key = getKey(apHeartbeat.getUser(), apHeartbeat.getApId());
+                final String key = getKey(apHeartbeat.getUser(), apHeartbeat.getMac());
                 final String running = key + ":running";
                 long size = redisUtils.set.scard(key);
                 if (size > 0 && redisUtils.string.setnx(running, running) == 1) {
@@ -130,8 +131,8 @@ public class ApOfflinePriceTagUpdateResultHandleListener implements HanShowPrice
         }
     }
 
-    private String getKey(String user, Integer apId) {
-        return String.format(KEY, user, apId);
+    private String getKey(String user, String apMac) {
+        return String.format(KEY, user, apMac);
     }
 }
 

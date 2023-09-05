@@ -3,16 +3,17 @@ package com.kbslan.esl.service;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kbslan.domain.entity.PriceTagInfoEntity;
-import com.kbslan.domain.entity.SysConfigEntity;
-import com.kbslan.domain.enums.ConfigKeyEnum;
+import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import com.kbslan.domain.enums.YNEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.service.PriceTagInfoService;
 import com.kbslan.domain.service.SysConfigService;
+import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.rpc.StoreSkuListVO;
 import com.kbslan.esl.rpc.WareClientRpc;
+import com.kbslan.esl.vo.pricetag.PriceTagParams;
+import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
-import com.kbslan.esl.vo.request.pricetag.PriceTagParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,10 +21,12 @@ import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * <p>
- *  电子价签处理流程抽象模版方法
+ * 电子价签处理流程抽象模版方法
  * </p>
  *
  * @author chao.lan
@@ -31,7 +34,9 @@ import java.util.Objects;
  * @since 2023/9/1 10:34
  */
 @Slf4j
-public abstract class PriceTagPipeline {
+public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
+        Function<PriceTagRequest, PriceTagParams>, DeviceLifeCycle<PriceTagParams> {
+    public static final String STORE_PRICE_TAG_SID_KEY = "storePriceTagSid:%d";
     @Resource
     private EslConfigService eslConfigService;
     @Resource
@@ -42,13 +47,65 @@ public abstract class PriceTagPipeline {
     private WareClientRpc wareClientRpc;
     @Resource
     private SysConfigService sysConfigService;
+    @Resource
+    private RedisUtils redisUtils;
 
-    public boolean bind(PriceTagParams params) throws Exception {
+    /**
+     * 支持的设备厂商
+     *
+     * @return 设备厂商
+     */
+    public abstract PriceTagDeviceSupplierEnum deviceSupplier();
+
+    @Override
+    public PriceTagParams apply(PriceTagRequest request) {
+        PriceTagParams params = new PriceTagParams();
+        params.setNeedPush(Objects.isNull(request.getNeedPush()) ? Boolean.TRUE : request.getNeedPush());
+        params.setOriginPriceTagId(request.getOriginPriceTagId());
+        params.setPriceTagId(request.getOriginPriceTagId());
+        params.setSkuIds(request.getSkuIds());
+        params.setDeviceType(request.getDeviceType());
+        long sid = eslConfigService.getSid(String.format(STORE_PRICE_TAG_SID_KEY, request.getStoreId()));
+        params.setSid(String.join(",", request.getStoreId().toString(), sid + ""));
+        params.setVendorId(request.getVendorId());
+        params.setStoreId(request.getStoreId());
+        params.setDeviceSupplier(request.getDeviceSupplier());
+        params.setUserId(request.getUserId());
+        params.setUserName(request.getUserName());
+        params.setBingingSource(request.getBingingSource());
+
+        return params;
+    }
+
+    @Override
+    public boolean test(PriceTagRequest request) {
+        return Objects.nonNull(request)
+                && Objects.nonNull(request.getDeviceSupplier())
+                && Objects.nonNull(request.getVendorId())
+                && Objects.nonNull(request.getStoreId())
+                && StringUtils.isNotBlank(request.getOriginPriceTagId())
+                && CollectionUtils.isNotEmpty(request.getSkuIds())
+                && Objects.nonNull(request.getUserId())
+                && Objects.nonNull(request.getUserName());
+    }
+
+    /**
+     * 电子价签绑定流程
+     *
+     * @param request 绑定参数
+     * @return 绑定结果
+     * @throws Exception 绑定异常
+     */
+    public boolean bind(PriceTagRequest request) throws Exception {
         //参数校验
-        boolean bindingCheck = bindCheck(params);
+        boolean bindingCheck = test(request);
         if (!bindingCheck) {
             throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_BIND_PARAMS_MISSING);
         }
+
+        //参数转换处理
+        PriceTagParams params = apply(request);
+
         PriceTagInfoEntity priceTagInfoEntity = queryPriceTagInfoEntity(params);
         if (Objects.nonNull(priceTagInfoEntity) && Objects.equals(priceTagInfoEntity.getYn(), YNEnum.YES.getCode())) {
             //已绑定
@@ -62,21 +119,28 @@ public abstract class PriceTagPipeline {
             throw new IllegalArgumentException(String.format(EslNoticeMessage.WARE_NOT_FOUND, StringUtils.join(",", params.getSkuIds())));
         }
 
-        //查询厂商配置
-        DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfigByDeviceSupplier(params);
-
         //是否需要检查绑定来源
-        boolean needCheckBindingSource = isNeedCheckBindingSource(params);
+        boolean needCheckBindingSource = eslConfigService.isNeedCheckBindingSource(params.getStoreId());
         if (needCheckBindingSource && Objects.nonNull(priceTagInfoEntity)
                 && !Objects.equals(priceTagInfoEntity.getBingingSource(), params.getBingingSource().getCode())) {
             //绑定来源不是一致
-            throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE);
+            throw new IllegalArgumentException(String.format(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE, priceTagInfoEntity.getBingingSource()));
         }
 
+        //查询厂商配置
+        DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfig(params);
+
+        //调用厂商接口前处理逻辑
+        beforeBind(params, deviceEslApiModel);
+
+        //绑定价签
         boolean bindingSuccess = priceTagServiceFactory.create(params.getDeviceSupplier()).bind(params, deviceEslApiModel);
         if (!bindingSuccess) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
+
+        //调用厂商接口成功后处理逻辑
+        afterBindSuccess(params, deviceEslApiModel);
 
         boolean saveSuccess = false;
         try {
@@ -89,45 +153,73 @@ public abstract class PriceTagPipeline {
                 saveSuccess = priceTagInfoService.updateById(priceTagInfoEntity);
             }
 
-            if (saveSuccess) {
-                afterBindSuccess(params);
+            if (saveSuccess && params.getNeedPush()) {
+                //绑定关系入库成功后处理逻辑
+                afterBindSaveSuccess(params, deviceEslApiModel);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         } finally {
             if (!saveSuccess) {
-                //TODO 保证入库成功 否则和厂商会存在事务不一致问题
-                log.error("解绑关系入库失败！！！ 必须要保证入库成功 否则和厂商会存在事务不一致问题");
+                log.warn("【价签系统和厂商ESL事务一致】 电子价签绑定关系入库失败！！！ 调用厂商接口解绑电子价签");
+                try {
+                    //不推送数据
+                    request.setNeedPush(Boolean.FALSE);
+                    //回滚解绑
+                    this.unbind(request);
+                } catch (Exception e) {
+                    //ignore 不再抛出异常
+                    log.error("【价签系统和厂商ESL事务一致】 调用厂商接口解绑电子价签失败", e);
+                }
             }
         }
 
         return saveSuccess;
     }
 
-    public boolean unbind(PriceTagParams params) throws Exception {
-        boolean unbindCheck = unbindCheck(params);
+
+    /**
+     * 电子价签解绑流程
+     *
+     * @param request 解绑参数
+     * @return 解绑结果
+     * @throws Exception 解绑异常
+     */
+    public boolean unbind(PriceTagRequest request) throws Exception {
+        //参数校验
+        boolean unbindCheck = test(request);
         if (!unbindCheck) {
             throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_UNBIND_PARAMS_MISSING);
         }
+
+        //参数转换处理
+        PriceTagParams params = apply(request);
+
         PriceTagInfoEntity priceTagInfoEntity = queryPriceTagInfoEntity(params);
         if (Objects.isNull(priceTagInfoEntity) || Objects.equals(priceTagInfoEntity.getYn(), YNEnum.NO.getCode())) {
             throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_NONE_BEEN_BOUNDED);
         }
 
-        //查询厂商配置
-        DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfigByDeviceSupplier(params);
         //是否需要检查绑定来源
-        boolean needCheckBindingSource = isNeedCheckBindingSource(params);
+        boolean needCheckBindingSource = eslConfigService.isNeedCheckBindingSource(params.getStoreId());
         if (needCheckBindingSource && !Objects.equals(priceTagInfoEntity.getBingingSource(), params.getBingingSource().getCode())) {
             //绑定来源不是一致
-            throw new IllegalArgumentException(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE);
+            throw new IllegalArgumentException(String.format(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE, priceTagInfoEntity.getBingingSource()));
         }
 
+        //查询厂商配置
+        DeviceEslApiModel deviceEslApiModel = eslConfigService.queryAndParseEslConfig(params);
+
+        //调用厂商接口前处理逻辑
+        beforeUnbind(params, deviceEslApiModel);
+
+        //解绑价签
         boolean unbindingSuccess = priceTagServiceFactory.create(params.getDeviceSupplier()).unbind(params, deviceEslApiModel);
         if (!unbindingSuccess) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_SERVICE_ERROR);
         }
 
+
+        //调用厂商接口成功后处理逻辑
+        afterUnBindSuccess(params, deviceEslApiModel);
 
         //更新绑定关系
         boolean saveSuccess = false;
@@ -135,36 +227,30 @@ public abstract class PriceTagPipeline {
             updateUnBindRecord(params, priceTagInfoEntity);
             saveSuccess = priceTagInfoService.updateById(priceTagInfoEntity);
 
-            if (saveSuccess) {
-                afterUnBindSuccess(params);
+            if (saveSuccess && params.getNeedPush()) {
+                //解绑关系入库成功后处理
+                afterUnBindSaveSuccess(params, deviceEslApiModel);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         } finally {
             if (!saveSuccess) {
-                //TODO 保证入库成功 否则和厂商会存在事务不一致问题
-                log.error("解绑关系入库失败！！！ 必须要保证入库成功 否则和厂商会存在事务不一致问题");
+                log.warn("【价签系统和厂商ESL事务一致】 电子价签解绑关系入库失败！！！ 调用厂商接口绑定电子价签");
+                try {
+                    //sku绑定原来的sku列表
+                    request.setSkuIds(priceTagInfoEntity.getSkuIds());
+                    //不推送数据
+                    request.setNeedPush(Boolean.FALSE);
+                    //回滚绑定
+                    this.bind(request);
+                } catch (Exception e) {
+                    //ignore 不再抛出异常
+                    log.error("【价签系统和厂商ESL事务一致】 调用厂商接口绑定电子价签失败", e);
+                }
             }
         }
 
         return saveSuccess;
     }
 
-    /**
-     * 解绑参数校验
-     *
-     * @param params 解绑参数
-     * @return 校验结果
-     */
-    private boolean unbindCheck(PriceTagParams params) {
-        return Objects.nonNull(params)
-                && Objects.nonNull(params.getDeviceSupplier())
-                && Objects.nonNull(params.getVendorId())
-                && Objects.nonNull(params.getStoreId())
-                && StringUtils.isNotBlank(params.getPriceTagId())
-                && Objects.nonNull(params.getUserId())
-                && Objects.nonNull(params.getUserName());
-    }
 
     /**
      * 更新绑定记录
@@ -180,7 +266,13 @@ public abstract class PriceTagPipeline {
         priceTagInfoEntity.setModified(LocalDateTime.now());
     }
 
-    private void updateBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
+    /**
+     * 更新绑定记录
+     *
+     * @param params             绑定参数
+     * @param priceTagInfoEntity 绑定记录
+     */
+    protected void updateBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
         priceTagInfoEntity.setYn(YNEnum.YES.getCode());
         priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
         priceTagInfoEntity.setModifierId(params.getUserId());
@@ -188,7 +280,13 @@ public abstract class PriceTagPipeline {
         priceTagInfoEntity.setModified(LocalDateTime.now());
     }
 
-    private PriceTagInfoEntity insertBindRecord(PriceTagParams params) {
+    /**
+     * 新增绑定记录
+     *
+     * @param params 绑定参数
+     * @return 绑定记录
+     */
+    protected PriceTagInfoEntity insertBindRecord(PriceTagParams params) {
         PriceTagInfoEntity priceTagInfoEntity = new PriceTagInfoEntity();
         priceTagInfoEntity.setVendorId(params.getVendorId());
         priceTagInfoEntity.setStoreId(params.getStoreId());
@@ -215,20 +313,9 @@ public abstract class PriceTagPipeline {
         return priceTagInfoEntity;
     }
 
-    private boolean isNeedCheckBindingSource(PriceTagParams params) {
-        SysConfigEntity sysConfig = sysConfigService.getOne(
-                Wrappers.<SysConfigEntity>lambdaQuery()
-                        .eq(SysConfigEntity::getVendorId, params.getVendorId())
-                        .eq(SysConfigEntity::getStoreId, params.getStoreId())
-                        .eq(SysConfigEntity::getYn, YNEnum.YES.getCode())
-                        .eq(SysConfigEntity::getConfigKey, ConfigKeyEnum.ESL_CHECK_BINDING_SOURCE.getCode())
-        );
-
-        return Objects.nonNull(sysConfig) && Boolean.parseBoolean(sysConfig.getConfigValue());
-    }
 
     /**
-     * 查询绑定记录
+     * 查询绑定记录 (deviceSupplier + originPriceTagId)
      *
      * @param params 绑定参数
      * @return 绑定记录
@@ -237,42 +324,10 @@ public abstract class PriceTagPipeline {
         return priceTagInfoService.getOne(
                 Wrappers.<PriceTagInfoEntity>lambdaQuery()
                         .eq(PriceTagInfoEntity::getDeviceSupplier, params.getDeviceSupplier().getCode())
-                        .eq(PriceTagInfoEntity::getPriceTagId, params.getPriceTagId())
+                        .eq(PriceTagInfoEntity::getOriginPriceTagId, params.getOriginPriceTagId())
         );
     }
 
-    /**
-     * 参数校验
-     *
-     * @param params 绑定参数
-     * @return 校验结果
-     */
-    private boolean bindCheck(PriceTagParams params) {
-        return Objects.nonNull(params)
-                && Objects.nonNull(params.getDeviceSupplier())
-                && Objects.nonNull(params.getVendorId())
-                && Objects.nonNull(params.getStoreId())
-                && StringUtils.isNotBlank(params.getPriceTagId())
-                && CollectionUtils.isNotEmpty(params.getSkuIds())
-                && Objects.nonNull(params.getUserId())
-                && Objects.nonNull(params.getUserName());
-    }
 
-    /**
-     * 绑定成功后处理
-     *
-     * @param params 绑定参数
-     */
-    protected void afterBindSuccess(PriceTagParams params) {
 
-    }
-
-    /**
-     * 解绑成功后处理
-     *
-     * @param params 解绑参数
-     */
-    protected void afterUnBindSuccess(PriceTagParams params) {
-
-    }
 }

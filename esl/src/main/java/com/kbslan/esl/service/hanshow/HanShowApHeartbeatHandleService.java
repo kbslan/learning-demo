@@ -1,7 +1,7 @@
-package com.kbslan.esl.service;
+package com.kbslan.esl.service.hanshow;
 
-import com.kbslan.esl.vo.hanshow.HanShowResult;
-import com.kbslan.esl.vo.hanshow.PassiveAPHeartbeat;
+import com.kbslan.esl.vo.pricetag.hanshow.HanShowResult;
+import com.kbslan.esl.vo.pricetag.hanshow.PassiveAPHeartbeat;
 
 import java.util.List;
 

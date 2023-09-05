@@ -6,13 +6,18 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.kbslan.domain.entity.SysConfigEntity;
 import com.kbslan.domain.enums.ConfigKeyEnum;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
+import com.kbslan.domain.enums.YNEnum;
 import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.model.EslServiceConfigModel;
 import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.config.RedisUtils;
-import com.kbslan.esl.service.*;
+import com.kbslan.esl.service.DeviceApiParser;
+import com.kbslan.esl.service.DeviceApiParserFactory;
+import com.kbslan.esl.service.EslConfigService;
+import com.kbslan.esl.service.OkHttpService;
+import com.kbslan.esl.vo.pricetag.CommonParams;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
-import com.kbslan.esl.vo.request.pricetag.CommonParams;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -32,6 +37,7 @@ import java.util.Objects;
  * @version 1.0.0
  * @since 2023/8/31 17:58
  */
+@Slf4j
 @Service
 public class EslConfigServiceImpl implements EslConfigService {
 
@@ -47,28 +53,33 @@ public class EslConfigServiceImpl implements EslConfigService {
     private OkHttpService okHttpService;
 
     @Override
-    public Map<String, EslServiceConfigModel> query(Long storeId) throws Exception {
+    public Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> query(Long storeId) throws Exception {
         SysConfigEntity sysConfig = sysConfigService.getOne(
                 Wrappers.<SysConfigEntity>lambdaQuery()
                         .eq(SysConfigEntity::getConfigKey, ConfigKeyEnum.ESL_SERVER_CONFIG.getCode())
+                        .eq(SysConfigEntity::getYn, YNEnum.YES.getCode())
         );
         if (Objects.isNull(sysConfig) || StringUtils.isBlank(sysConfig.getConfigValue())) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_CONFIG_NOT_FOUND);
         }
-        return JSON.parseObject(sysConfig.getConfigValue(), new TypeReference<Map<String, EslServiceConfigModel>>() {
-        });
+        try {
+            return JSON.parseObject(sysConfig.getConfigValue(), new TypeReference<Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel>>() {
+            });
+        } catch (Exception e) {
+            //厂商ESL服务配置信息错误，解析失败
+            throw new IllegalArgumentException(EslNoticeMessage.ESL_CONFIG_PARSE_ERROR);
+        }
     }
 
-
     @Override
-    public Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parse(Map<String, EslServiceConfigModel> eslServiceConfigModelMap) throws Exception {
+    public Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parse(Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> eslServiceConfigModelMap) throws Exception {
         if (MapUtils.isEmpty(eslServiceConfigModelMap)) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_CONFIG_NOT_FOUND);
         }
 
         Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> parseResult = new HashMap<>(eslServiceConfigModelMap.size());
-        for (Map.Entry<String, EslServiceConfigModel> configModelEntry : eslServiceConfigModelMap.entrySet()) {
-            PriceTagDeviceSupplierEnum deviceSupplierEnum = PriceTagDeviceSupplierEnum.get(configModelEntry.getKey());
+        for (Map.Entry<PriceTagDeviceSupplierEnum, EslServiceConfigModel> configModelEntry : eslServiceConfigModelMap.entrySet()) {
+            PriceTagDeviceSupplierEnum deviceSupplierEnum = configModelEntry.getKey();
             if (Objects.isNull(deviceSupplierEnum)) {
                 throw new IllegalArgumentException(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR);
             }
@@ -130,9 +141,9 @@ public class EslConfigServiceImpl implements EslConfigService {
 
 
     @Override
-    public DeviceEslApiModel queryAndParseEslConfigByDeviceSupplier(CommonParams params) throws Exception {
+    public DeviceEslApiModel queryAndParseEslConfig(CommonParams params) throws Exception {
         //查询ESL服务配置
-        Map<String, EslServiceConfigModel> configModelMap = this.query(params.getStoreId());
+        Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> configModelMap = this.query(params.getStoreId());
 
         //解析ESL服务配置
         Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> deviceEslApiModelMap = this.parse(configModelMap);
@@ -151,4 +162,32 @@ public class EslConfigServiceImpl implements EslConfigService {
 
         return deviceEslApiModel;
     }
+
+    @Override
+    public long getSid(String key) {
+        long result;
+        try {
+            result = redisUtils.string.incrBy(key, 1L);
+        } catch (Exception e) {
+            log.error("redis自增异常 key={}", key, e);
+            result = (long) Math.ceil(Math.random() * 10000);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean isNeedCheckBindingSource(Long storeId) {
+        if (Objects.isNull(storeId)) {
+            return true;
+        }
+        SysConfigEntity sysConfig = sysConfigService.getOne(
+                Wrappers.<SysConfigEntity>lambdaQuery()
+                        .eq(SysConfigEntity::getStoreId, storeId)
+                        .eq(SysConfigEntity::getYn, YNEnum.YES.getCode())
+                        .eq(SysConfigEntity::getConfigKey, ConfigKeyEnum.ESL_CHECK_BINDING_SOURCE.getCode())
+        );
+
+        return Objects.nonNull(sysConfig) && Boolean.parseBoolean(sysConfig.getConfigValue());
+    }
+
 }

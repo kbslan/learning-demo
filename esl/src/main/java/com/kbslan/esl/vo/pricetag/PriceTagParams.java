@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo.request.pricetag;
+package com.kbslan.esl.vo.pricetag;
 
 import com.kbslan.domain.enums.PriceTagDeviceTypeEnum;
 import lombok.Getter;
@@ -20,6 +20,11 @@ import java.util.List;
 @Setter
 @ToString
 public class PriceTagParams extends CommonParams {
+
+    /**
+     * 绑定、解绑操作成功后是否需要推送价签数据
+     */
+    private Boolean needPush;
     /**
      * 原始价签ID
      */

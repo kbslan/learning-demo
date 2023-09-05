@@ -1,5 +1,6 @@
 package com.kbslan.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.kbslan.domain.model.EslServiceConfigModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,6 +42,7 @@ public enum ConfigKeyEnum {
         }
     }
 
+    @JsonCreator
     public static ConfigKeyEnum get(String code) {
         return Objects.isNull(code) ? null : cache.get(code);
     }

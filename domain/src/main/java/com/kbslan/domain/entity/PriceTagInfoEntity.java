@@ -1,12 +1,16 @@
 package com.kbslan.domain.entity;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>
@@ -133,6 +137,19 @@ public class PriceTagInfoEntity implements Serializable {
      * 更新时间
      */
     private LocalDateTime modified;
+
+    /**
+     * 获取推送的商品skuId列表
+     *
+     * @return skuId列表
+     */
+    public List<Long> getSkuIds() {
+        if (StringUtils.isBlank(this.extJson)) {
+            return Collections.emptyList();
+        }
+
+        return JSON.parseArray(this.extJson, Long.class);
+    }
 
 
 }

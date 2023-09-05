@@ -1,5 +1,6 @@
 package com.kbslan.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -33,6 +34,7 @@ public enum PriceTagDeviceSupplierEnum {
         cache = Arrays.stream(values()).collect(Collectors.toMap(PriceTagDeviceSupplierEnum::getCode, Function.identity()));
     }
 
+    @JsonCreator
     public static PriceTagDeviceSupplierEnum get(String code) {
         return Objects.isNull(code) ? null : cache.get(code);
     }

@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo.request.pricetag;
+package com.kbslan.esl.vo.pricetag;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +19,9 @@ import lombok.ToString;
 public class StationParams extends CommonParams {
 
     /**
-     * 原始基站id
+     * 原始基站mac
      */
-    private String originApId;
+    private String originAp;
     /**
      * 基站mac
      */

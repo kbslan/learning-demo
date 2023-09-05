@@ -1,4 +1,4 @@
-package com.kbslan.esl.vo.request.pricetag;
+package com.kbslan.esl.vo.pricetag;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
 import lombok.Getter;
