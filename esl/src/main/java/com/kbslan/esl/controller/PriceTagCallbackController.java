@@ -3,10 +3,13 @@ package com.kbslan.esl.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
+import com.kbslan.esl.service.mq.PriceTagCallbackMessageConsumerHandler;
+import com.kbslan.esl.service.mq.message.PriceTagCallbackMessage;
 import com.kbslan.esl.service.pricetag.PriceTagServiceFactory;
 import com.kbslan.esl.service.pricetag.StoreStationServiceFactory;
 import com.kbslan.esl.service.pricetag.model.hanshow.HanShowResult;
 import com.kbslan.esl.vo.response.DataResponseJson;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -40,6 +43,8 @@ public class PriceTagCallbackController {
     private StoreStationServiceFactory storeStationServiceFactory;
     @Resource
     private PriceTagServiceFactory priceTagServiceFactory;
+    @Resource
+    private PriceTagCallbackMessageConsumerHandler priceTagCallbackMessageConsumerHandler;
 
     /**
      * 基站 & 价签心跳
@@ -75,7 +80,17 @@ public class PriceTagCallbackController {
         String json = parseRequest(request);
         PriceTagDeviceSupplierEnum deviceSupplier = parseDeviceSupplier(request);
         log.debug("接收到价签回调数据 deviceSupplier={} json={}", deviceSupplier, json);
+        //TODO 发生MQ消息
+
+        //此处先模拟调用 start
         priceTagServiceFactory.create(deviceSupplier).callback(json);
+
+        PriceTagCallbackMessage message = new PriceTagCallbackMessage();
+        message.setDeviceSupplier(deviceSupplier);
+        message.setBody(json);
+        priceTagCallbackMessageConsumerHandler.onHandle(message);
+        //此处先模拟调用 end
+
         return DataResponseJson.ok();
     }
 
@@ -104,12 +119,12 @@ public class PriceTagCallbackController {
     private PriceTagDeviceSupplierEnum parseDeviceSupplier(HttpServletRequest request) {
         String supplier = request.getParameter("supplier");
         if (StringUtils.isBlank(supplier)) {
-            throw new IllegalArgumentException("回调参数中解析厂商类型失败");
+            throw new IllegalArgumentException(String.format(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR, supplier));
         }
 
         PriceTagDeviceSupplierEnum deviceSupplier = PriceTagDeviceSupplierEnum.get(supplier);
         if (Objects.isNull(deviceSupplier)) {
-            throw new IllegalArgumentException("未识别厂商类型" + supplier);
+            throw new IllegalArgumentException(String.format(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR, supplier));
         }
         return deviceSupplier;
     }

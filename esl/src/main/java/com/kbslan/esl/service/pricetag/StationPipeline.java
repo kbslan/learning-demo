@@ -9,7 +9,7 @@ import com.kbslan.domain.service.ApStoreService;
 import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.service.EslConfigService;
 import com.kbslan.esl.service.pricetag.model.StationParams;
-import com.kbslan.esl.service.pricetag.model.convert.StationParamsConvert;
+import com.kbslan.esl.service.pricetag.model.convert.StationRequestConvertStationParams;
 import com.kbslan.esl.vo.request.pricetag.StationRequest;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +45,7 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
     @Resource
     private RedisUtils redisUtils;
     @Resource
-    private StationParamsConvert stationParamsConvert;
+    private StationRequestConvertStationParams stationRequestConvertStationParams;
 
     /**
      * 支持的设备厂商
@@ -63,7 +63,7 @@ public abstract class StationPipeline implements Predicate<StationRequest>,
      */
     @Override
     public StationParams apply(StationRequest request) {
-        return stationParamsConvert.apply(request);
+        return stationRequestConvertStationParams.apply(request);
     }
 
     /**

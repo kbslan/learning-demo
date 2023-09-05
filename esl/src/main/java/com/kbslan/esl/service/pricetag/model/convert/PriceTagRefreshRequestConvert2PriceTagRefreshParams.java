@@ -16,14 +16,15 @@ import java.util.function.Function;
  * @since 2023/9/5 17:58
  */
 @Service
-public class PriceTagRefreshParamsConvert implements Function<PriceTagRefreshRequest, PriceTagRefreshParams> {
+public class PriceTagRefreshRequestConvert2PriceTagRefreshParams implements Function<PriceTagRefreshRequest, PriceTagRefreshParams> {
     @Override
     public PriceTagRefreshParams apply(PriceTagRefreshRequest request) {
         PriceTagRefreshParams params = new PriceTagRefreshParams();
         params.setDeviceSupplier(request.getDeviceSupplier());
         params.setVendorId(request.getVendorId());
         params.setStoreId(request.getStoreId());
-        params.setPriceTagId(request.getOriginPriceTagId());
+        params.setOriginPriceTagId(request.getOriginPriceTagId());
+        params.setPriceTagId(request.getPriceTagId());
         params.setSid(request.getTrace());
         params.setSkuIds(request.getSkuIds());
 

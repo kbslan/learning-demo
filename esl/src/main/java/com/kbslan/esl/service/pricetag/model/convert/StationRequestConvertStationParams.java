@@ -16,7 +16,7 @@ import java.util.function.Function;
  * @since 2023/9/5 17:56
  */
 @Service
-public class StationParamsConvert implements Function<StationRequest, StationParams> {
+public class StationRequestConvertStationParams implements Function<StationRequest, StationParams> {
     @Override
     public StationParams apply(StationRequest request) {
         StationParams params = new StationParams();

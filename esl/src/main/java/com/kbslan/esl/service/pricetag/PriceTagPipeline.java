@@ -13,7 +13,8 @@ import com.kbslan.esl.rpc.StoreSkuListVO;
 import com.kbslan.esl.rpc.WareClientRpc;
 import com.kbslan.esl.service.EslConfigService;
 import com.kbslan.esl.service.pricetag.model.PriceTagParams;
-import com.kbslan.esl.service.pricetag.model.convert.PriceTagParamsConvert;
+import com.kbslan.esl.service.pricetag.model.convert.PriceTagParamsConvert2PriceTagRefreshParams;
+import com.kbslan.esl.service.pricetag.model.convert.PriceTagRequestConvert2PriceTagParams;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +52,9 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
     @Resource
     private RedisUtils redisUtils;
     @Resource
-    private PriceTagParamsConvert priceTagParamsConvert;
+    private PriceTagRequestConvert2PriceTagParams priceTagRequestConvert2PriceTagParams;
+    @Resource
+    private PriceTagParamsConvert2PriceTagRefreshParams priceTagParamsConvert2PriceTagRefreshParams;
 
     /**
      * 支持的设备厂商
@@ -62,7 +65,7 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
 
     @Override
     public PriceTagParams apply(PriceTagRequest request) {
-        return priceTagParamsConvert.apply(request);
+        return priceTagRequestConvert2PriceTagParams.apply(request);
     }
 
     @Override
@@ -316,6 +319,13 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagRequest>,
         );
     }
 
-
-
+    @Override
+    public void afterBindSaveSuccess(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) {
+        try {
+            priceTagServiceFactory.create(params.getDeviceSupplier())
+                    .refresh(priceTagParamsConvert2PriceTagRefreshParams.apply(params), deviceEslApiModel);
+        } catch (Exception e) {
+            log.error("电子价签刷新失败 params={}", params, e);
+        }
+    }
 }

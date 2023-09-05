@@ -17,7 +17,7 @@ import java.util.function.Function;
  * @since 2023/9/5 17:54
  */
 @Service
-public class PriceTagParamsConvert implements Function<PriceTagRequest, PriceTagParams> {
+public class PriceTagRequestConvert2PriceTagParams implements Function<PriceTagRequest, PriceTagParams> {
     @Override
     public PriceTagParams apply(PriceTagRequest request) {
         PriceTagParams params = new PriceTagParams();

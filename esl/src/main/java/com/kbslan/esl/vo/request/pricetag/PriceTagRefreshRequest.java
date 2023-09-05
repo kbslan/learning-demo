@@ -51,11 +51,6 @@ public class PriceTagRefreshRequest implements Serializable {
     private String priceTagId;
 
     /**
-     * 模版名称
-     */
-    private String name;
-
-    /**
      * 刷新商品sku列表
      */
     private List<Long> skuIds;

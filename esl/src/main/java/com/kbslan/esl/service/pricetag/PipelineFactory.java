@@ -45,7 +45,7 @@ public class PipelineFactory {
         if (Objects.requireNonNull(deviceSupplier) == PriceTagDeviceSupplierEnum.HAN_SHOW) {
             service = STATION_SERVICES.get(deviceSupplier);
         } else {
-            throw new UnsupportedOperationException(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR);
+            throw new UnsupportedOperationException(String.format(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR, deviceSupplier));
         }
         return service;
     }
@@ -60,7 +60,7 @@ public class PipelineFactory {
         if (Objects.requireNonNull(deviceSupplier) == PriceTagDeviceSupplierEnum.HAN_SHOW) {
             service = PRICE_TAG_SERVICES.get(deviceSupplier);
         } else {
-            throw new UnsupportedOperationException(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR);
+            throw new UnsupportedOperationException(String.format(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR, deviceSupplier));
         }
         return service;
     }

@@ -31,6 +31,10 @@ public class PriceTagRefreshParams {
      * 门店ID
      */
     private Long storeId;
+    /**
+     * 原始价签ID
+     */
+    private String originPriceTagId;
 
     /**
      * 电子价签ID
@@ -41,11 +45,6 @@ public class PriceTagRefreshParams {
      * 唯一请求链路ID
      */
     private String sid;
-
-    /**
-     * 模版名称
-     */
-    private String name;
 
     /**
      * 刷新商品sku列表

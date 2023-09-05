@@ -7,7 +7,7 @@ import com.kbslan.domain.service.PriceTagInfoService;
 import com.kbslan.esl.service.EslConfigService;
 import com.kbslan.esl.service.pricetag.PipelineFactory;
 import com.kbslan.esl.service.pricetag.PriceTagServiceFactory;
-import com.kbslan.esl.service.pricetag.model.convert.PriceTagRefreshParamsConvert;
+import com.kbslan.esl.service.pricetag.model.convert.PriceTagRefreshRequestConvert2PriceTagRefreshParams;
 import com.kbslan.esl.vo.request.PriceTagInfoQuery;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshRequest;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
@@ -40,7 +40,7 @@ public class PriceTagController {
     @Resource
     private PriceTagServiceFactory priceTagServiceFactory;
     @Resource
-    private PriceTagRefreshParamsConvert priceTagRefreshParamsConvert;
+    private PriceTagRefreshRequestConvert2PriceTagRefreshParams priceTagRefreshRequestConvert2PriceTagRefreshParams;
     @Resource
     private EslConfigService eslConfigService;
 
@@ -97,7 +97,7 @@ public class PriceTagController {
     public DataResponseJson refresh(@RequestBody PriceTagRefreshRequest request) throws Exception {
 
         return DataResponseJson.ok(priceTagServiceFactory.create(request.getDeviceSupplier())
-                .refresh(priceTagRefreshParamsConvert.apply(request),
+                .refresh(priceTagRefreshRequestConvert2PriceTagRefreshParams.apply(request),
                         eslConfigService.queryAndParseEslConfig(request.getStoreId(), request.getDeviceSupplier())
                 ));
     }

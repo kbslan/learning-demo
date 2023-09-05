@@ -39,7 +39,7 @@ public class DisplaySystemConsumerHandler /* extends AbsMessageHandler<DisplaySy
 
 
     //    @Override
-    protected void onHandle(/*MessageContext context,*/ DisplaySystemMessage message) {
+    public void onHandle(/*MessageContext context,*/ DisplaySystemMessage message) {
 
         log.info("陈列系统电子价签MQ, message={}", JSON.toJSONString(message));
 

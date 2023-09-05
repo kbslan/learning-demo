@@ -80,7 +80,7 @@ public class EslConfigServiceImpl implements EslConfigService {
         for (Map.Entry<PriceTagDeviceSupplierEnum, EslServiceConfigModel> configModelEntry : eslServiceConfigModelMap.entrySet()) {
             PriceTagDeviceSupplierEnum deviceSupplierEnum = configModelEntry.getKey();
             if (Objects.isNull(deviceSupplierEnum)) {
-                throw new IllegalArgumentException(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR);
+                throw new IllegalArgumentException(String.format(EslNoticeMessage.ESL_DEVICE_SUPPLIER_ERROR, "null"));
             }
             parseResult.put(deviceSupplierEnum, this.parse(deviceSupplierEnum, configModelEntry.getValue()));
         }

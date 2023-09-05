@@ -1,6 +1,7 @@
 package com.kbslan.esl.service.impl.pricetag.hanshow;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
+import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.esl.service.pricetag.PriceTagPipeline;
 import com.kbslan.esl.utils.MiscUtils;
 import com.kbslan.esl.service.pricetag.model.PriceTagParams;
@@ -29,5 +30,11 @@ public class HanShowPriceTagPipelineImpl extends PriceTagPipeline {
         //汉朔价签ID转换
         params.setPriceTagId(MiscUtils.formatOriginPriceTagId(request.getOriginPriceTagId()));
         return params;
+    }
+
+    @Override
+    public void beforeUnbind(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) {
+        //汉朔解绑不需要推送价签数据
+        params.setNeedPush(false);
     }
 }

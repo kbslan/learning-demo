@@ -96,8 +96,9 @@ public class HanShowApiService {
         PriceTagScreen screen = new PriceTagScreen();
         screen.setSid(params.getSid());
         screen.setBackUrl(callbackUrl);
-        screen.setName(params.getName());
-        //查询数据
+
+        //TODO 模版和数据填充
+        screen.setName("");
         screen.setArgs(Collections.emptyMap());
 
         String result = okHttpService.put(refreshUrl, screen);
