@@ -12,7 +12,7 @@ import com.kbslan.domain.model.EslServiceConfigModel;
 import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.config.RedisUtils;
 import com.kbslan.esl.service.EslConfigService;
-import com.kbslan.esl.service.OkHttpService;
+import com.kbslan.esl.service.http.HttpComponent;
 import com.kbslan.esl.service.pricetag.DeviceApiParser;
 import com.kbslan.esl.service.pricetag.DeviceApiParserFactory;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
@@ -49,7 +49,7 @@ public class EslConfigServiceImpl implements EslConfigService {
     @Resource
     private RedisUtils redisUtils;
     @Resource
-    private OkHttpService okHttpService;
+    private HttpComponent httpComponent;
 
     @Override
     public Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> query(Long storeId) throws Exception {
@@ -123,7 +123,10 @@ public class EslConfigServiceImpl implements EslConfigService {
         }
 
         // 2. 调用厂商服务获取token
-        String result = okHttpService.post(deviceEslApiModel.getLoginUrl().toString(), deviceEslApiModel.getUserName());
+        Map<String, String> data = new HashMap<>();
+        data.put("username", deviceEslApiModel.getUserName());
+        data.put("password", deviceEslApiModel.getPassword());
+        String result = httpComponent.post(deviceEslApiModel.getLoginUrl().toString(), JSON.toJSONString(data));
         // 3. 如果token不存在，则抛出异常
         if (StringUtils.isBlank(result)) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_LOGIN_ERROR);

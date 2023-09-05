@@ -3,8 +3,7 @@ package com.kbslan.esl.service.pricetag.hanshow;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.kbslan.domain.model.DeviceEslApiModel;
-import com.kbslan.esl.service.OkHttpService;
-import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
+import com.kbslan.esl.service.http.HttpComponent;
 import com.kbslan.esl.service.pricetag.model.PriceTagParams;
 import com.kbslan.esl.service.pricetag.model.PriceTagRefreshParams;
 import com.kbslan.esl.service.pricetag.model.StationParams;
@@ -12,10 +11,12 @@ import com.kbslan.esl.service.pricetag.model.hanshow.AllotBaseStation;
 import com.kbslan.esl.service.pricetag.model.hanshow.HanShowResult;
 import com.kbslan.esl.service.pricetag.model.hanshow.PriceTagScreen;
 import com.kbslan.esl.service.pricetag.model.hanshow.UnbindPriceTag;
+import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Objects;
 
@@ -32,10 +33,10 @@ import java.util.Objects;
 public class HanShowApiService {
 
     @Resource
-    private OkHttpService okHttpService;
+    private HttpComponent httpComponent;
 
 
-    public boolean bindStation(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+    public boolean bindStation(StationParams params, DeviceEslApiModel deviceEslApiModel) throws IOException {
         if (Objects.isNull(params) || StringUtils.isBlank(params.getApMac())
                 || Objects.isNull(params.getStoreId()) || Objects.isNull(deviceEslApiModel)
                 || Objects.isNull(deviceEslApiModel.getBindingStationUrl())) {
@@ -47,13 +48,13 @@ public class HanShowApiService {
         allotBaseStation.setAllowBindV1Esl(true);
         //{user}/user/ap PUT 为该门店分配一个基站
         String url = deviceEslApiModel.getBindingStationUrl().buildAndExpand(params.getStoreId()).toString();
-        String result = okHttpService.put(url, allotBaseStation);
+        String result = httpComponent.put(url, JSON.toJSONString(allotBaseStation));
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
         return hanShowResult.isSuccess();
     }
 
-    public boolean unbindStation(StationParams params, DeviceEslApiModel deviceEslApiModel) {
+    public boolean unbindStation(StationParams params, DeviceEslApiModel deviceEslApiModel) throws IOException {
         if (Objects.isNull(params) || Objects.isNull(params.getApMac())
                 || Objects.isNull(params.getStoreId()) || Objects.isNull(deviceEslApiModel)
                 || Objects.isNull(deviceEslApiModel.getUnbindingStationUrl())) {
@@ -61,7 +62,7 @@ public class HanShowApiService {
         }
         //{user}/user/ap/{apmac} DELETE 从该user移除一个基站
         String url = deviceEslApiModel.getUnbindingStationUrl().buildAndExpand(params.getStoreId(), params.getApMac()).toString();
-        String result = okHttpService.delete(url);
+        String result = httpComponent.delete(url);
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
         return hanShowResult.isSuccess();
@@ -71,20 +72,20 @@ public class HanShowApiService {
         return true;
     }
 
-    public boolean unbindPriceTag(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) {
+    public boolean unbindPriceTag(PriceTagParams params, DeviceEslApiModel deviceEslApiModel) throws IOException {
         //{user}/esls/bind DELETE 批量解绑价签
         UnbindPriceTag unbindPriceTag = new UnbindPriceTag();
         unbindPriceTag.setPriceTagId(params.getPriceTagId());
         unbindPriceTag.setSid(params.getSid());
         String url = deviceEslApiModel.getUnbindingPriceTagUrl().buildAndExpand(params.getStoreId()).toUriString();
 
-        String result = okHttpService.delete(url, Collections.singleton(unbindPriceTag));
+        String result = httpComponent.delete(url, Collections.singleton(unbindPriceTag));
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
         return hanShowResult.isSuccess();
     }
 
-    public boolean refresh(PriceTagRefreshParams params, DeviceEslApiModel deviceEslApiModel) {
+    public boolean refresh(PriceTagRefreshParams params, DeviceEslApiModel deviceEslApiModel) throws IOException {
         //{user}/esls/{id}/screen PUT 更新指定价签屏幕
         String refreshUrl = deviceEslApiModel.getRefreshPriceTagUrl().buildAndExpand(params.getStoreId(), params.getPriceTagId()).toString();
 
@@ -101,7 +102,7 @@ public class HanShowApiService {
         screen.setName("");
         screen.setArgs(Collections.emptyMap());
 
-        String result = okHttpService.put(refreshUrl, screen);
+        String result =  httpComponent.put(refreshUrl, JSON.toJSONString(screen));
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
         return hanShowResult.isSuccess();
