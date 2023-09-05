@@ -35,6 +35,10 @@ public class HanShowResult<T> {
      * 当” ESL_UPDATE” 命令传输结束后返回更新结果和相关信息。
      */
     public static final String ESL_UPDATE_ACK = "ESL_UPDATE_ACK";
+    /**
+     * 解绑状态
+     */
+    public static final String UNBIND_STATUS = "UNBIND_STATUS";
 
     /**
      * 错误代码。参考APIv3返回值。
@@ -90,6 +94,7 @@ public class HanShowResult<T> {
      * @return true:成功 false:失败
      */
     public boolean isSuccess() {
-        return Objects.equals(statusNo, 0);
+        //同步：0 || 异步：1
+        return Objects.equals(statusNo, 0) || Objects.equals(statusNo, 1);
     }
 }

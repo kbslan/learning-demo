@@ -17,8 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * <p>
@@ -77,9 +76,17 @@ public class HanShowApiService {
         UnbindPriceTag unbindPriceTag = new UnbindPriceTag();
         unbindPriceTag.setPriceTagId(params.getPriceTagId());
         unbindPriceTag.setSid(params.getSid());
+        String callbackUrl = deviceEslApiModel.getCallbackUrl()
+                .queryParam("vendor", params.getVendorId())
+                .queryParam("store", params.getStoreId())
+                .queryParam("supplier", params.getDeviceSupplier().getCode())
+                .build().toString();
+        unbindPriceTag.setBackUrl(callbackUrl);
         String url = deviceEslApiModel.getUnbindingPriceTagUrl().buildAndExpand(params.getStoreId()).toUriString();
 
-        String result = httpComponent.delete(url, Collections.singleton(unbindPriceTag));
+        Map<String, List<UnbindPriceTag>> data = new HashMap<>();
+        data.put("data", Collections.singletonList(unbindPriceTag));
+        String result = httpComponent.delete(url, data);
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
         return hanShowResult.isSuccess();

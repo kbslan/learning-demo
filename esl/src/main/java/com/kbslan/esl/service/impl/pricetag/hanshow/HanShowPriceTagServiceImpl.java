@@ -103,5 +103,10 @@ public class HanShowPriceTagServiceImpl implements PriceTagService {
         });
         // 价签更新结果处理
         hanShowPriceTagUpdateResultHandleService.handle(updatePriceTagResultHslResult);
+
+        if (HanShowResult.UNBIND_STATUS.equals(updatePriceTagResultHslResult.getType())) {
+            // 价签解绑结果处理
+            log.info("价签解绑结果处理");
+        }
     }
 }
