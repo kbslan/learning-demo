@@ -4,8 +4,12 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kbslan.domain.entity.PriceTagInfoEntity;
 import com.kbslan.domain.service.PriceTagInfoService;
-import com.kbslan.esl.service.PipelineFactory;
+import com.kbslan.esl.service.EslConfigService;
+import com.kbslan.esl.service.pricetag.PipelineFactory;
+import com.kbslan.esl.service.pricetag.PriceTagServiceFactory;
+import com.kbslan.esl.service.pricetag.model.convert.PriceTagRefreshParamsConvert;
 import com.kbslan.esl.vo.request.PriceTagInfoQuery;
+import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshRequest;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +37,12 @@ public class PriceTagController {
     private PriceTagInfoService priceTagInfoService;
     @Resource
     private PipelineFactory pipelineFactory;
+    @Resource
+    private PriceTagServiceFactory priceTagServiceFactory;
+    @Resource
+    private PriceTagRefreshParamsConvert priceTagRefreshParamsConvert;
+    @Resource
+    private EslConfigService eslConfigService;
 
     /**
      * 电子价签列表查询
@@ -75,5 +85,20 @@ public class PriceTagController {
     @PostMapping("/unbind")
     public DataResponseJson unbind(@RequestBody PriceTagRequest request) throws Exception {
         return DataResponseJson.ok(pipelineFactory.createPriceTagPipeline(request.getDeviceSupplier()).unbind(request));
+    }
+
+    /**
+     * 电子价签刷新
+     *
+     * @param request 刷新参数
+     * @return 刷新结果
+     * @throws Exception 刷新异常
+     */
+    public DataResponseJson refresh(@RequestBody PriceTagRefreshRequest request) throws Exception {
+
+        return DataResponseJson.ok(priceTagServiceFactory.create(request.getDeviceSupplier())
+                .refresh(priceTagRefreshParamsConvert.apply(request),
+                        eslConfigService.queryAndParseEslConfig(request.getStoreId(), request.getDeviceSupplier())
+                ));
     }
 }

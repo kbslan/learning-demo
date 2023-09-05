@@ -3,7 +3,7 @@ package com.kbslan.esl.service.mq;
 import com.alibaba.fastjson.JSON;
 import com.kbslan.domain.enums.PriceTagBingingSourceEnum;
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
-import com.kbslan.esl.service.PipelineFactory;
+import com.kbslan.esl.service.pricetag.PipelineFactory;
 import com.kbslan.esl.service.mq.message.DisplaySystemMessage;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +63,7 @@ public class DisplaySystemConsumerHandler /* extends AbsMessageHandler<DisplaySy
                     continue;
                 }
                 PriceTagRequest request = new PriceTagRequest();
-                request.setSid(UUID.randomUUID().toString().replace("-", ""));
+                request.setTrace(UUID.randomUUID().toString().replace("-", ""));
                 request.setVendorId(data.getVenderId());
                 request.setStoreId(data.getShopId());
                 request.setDeviceSupplier(deviceSupplier);

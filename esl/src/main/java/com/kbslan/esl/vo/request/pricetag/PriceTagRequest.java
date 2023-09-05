@@ -28,7 +28,7 @@ public class PriceTagRequest implements Serializable {
     /**
      * 跟踪ID
      */
-    private String sid;
+    private String trace;
     /**
      * 商家ID
      */

@@ -11,11 +11,10 @@ import com.kbslan.domain.model.DeviceEslApiModel;
 import com.kbslan.domain.model.EslServiceConfigModel;
 import com.kbslan.domain.service.SysConfigService;
 import com.kbslan.esl.config.RedisUtils;
-import com.kbslan.esl.service.DeviceApiParser;
-import com.kbslan.esl.service.DeviceApiParserFactory;
 import com.kbslan.esl.service.EslConfigService;
 import com.kbslan.esl.service.OkHttpService;
-import com.kbslan.esl.vo.pricetag.CommonParams;
+import com.kbslan.esl.service.pricetag.DeviceApiParser;
+import com.kbslan.esl.service.pricetag.DeviceApiParserFactory;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
@@ -141,14 +140,14 @@ public class EslConfigServiceImpl implements EslConfigService {
 
 
     @Override
-    public DeviceEslApiModel queryAndParseEslConfig(CommonParams params) throws Exception {
+    public DeviceEslApiModel queryAndParseEslConfig(Long storeId, PriceTagDeviceSupplierEnum deviceSupplier) throws Exception {
         //查询ESL服务配置
-        Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> configModelMap = this.query(params.getStoreId());
+        Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> configModelMap = this.query(Objects.requireNonNull(storeId));
 
         //解析ESL服务配置
         Map<PriceTagDeviceSupplierEnum, DeviceEslApiModel> deviceEslApiModelMap = this.parse(configModelMap);
 
-        DeviceEslApiModel deviceEslApiModel = deviceEslApiModelMap.get(params.getDeviceSupplier());
+        DeviceEslApiModel deviceEslApiModel = deviceEslApiModelMap.get(Objects.requireNonNull(deviceSupplier));
 
         if (Objects.isNull(deviceEslApiModel)) {
             throw new IllegalArgumentException(EslNoticeMessage.ESL_CONFIG_NOT_FOUND);

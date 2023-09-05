@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kbslan.domain.entity.ApStoreEntity;
 import com.kbslan.domain.service.ApStoreService;
-import com.kbslan.esl.service.PipelineFactory;
+import com.kbslan.esl.service.pricetag.PipelineFactory;
 import com.kbslan.esl.vo.request.ApStoreQuery;
 import com.kbslan.esl.vo.request.pricetag.StationRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
