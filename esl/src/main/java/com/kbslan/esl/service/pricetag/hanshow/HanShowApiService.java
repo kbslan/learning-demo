@@ -12,6 +12,7 @@ import com.kbslan.esl.service.pricetag.model.hanshow.HanShowResult;
 import com.kbslan.esl.service.pricetag.model.hanshow.PriceTagScreen;
 import com.kbslan.esl.service.pricetag.model.hanshow.UnbindPriceTag;
 import com.kbslan.esl.vo.response.notice.EslNoticeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ import java.util.*;
  * @version 1.0.0
  * @since 2023/9/4 10:21
  */
+@Slf4j
 @Service
 public class HanShowApiService {
 
@@ -50,6 +52,9 @@ public class HanShowApiService {
         String result = httpComponent.put(url, JSON.toJSONString(allotBaseStation));
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
+        if (!hanShowResult.isSuccess()) {
+            log.error("汉朔绑定基站失败, params={}, result={}", params, result);
+        }
         return hanShowResult.isSuccess();
     }
 
@@ -64,6 +69,9 @@ public class HanShowApiService {
         String result = httpComponent.delete(url);
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
+        if (!hanShowResult.isSuccess()) {
+            log.error("汉朔解绑基站失败, params={}, result={}", params, result);
+        }
         return hanShowResult.isSuccess();
     }
 
@@ -89,6 +97,9 @@ public class HanShowApiService {
         String result = httpComponent.delete(url, data);
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
+        if (!hanShowResult.isSuccess()) {
+            log.error("汉朔解绑价签失败, params={}, result={}", params, result);
+        }
         return hanShowResult.isSuccess();
     }
 
@@ -112,6 +123,9 @@ public class HanShowApiService {
         String result =  httpComponent.put(refreshUrl, JSON.toJSONString(screen));
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {
         });
+        if (!hanShowResult.isSuccess()) {
+            log.error("汉朔刷新价签失败, params={}, result={}", params, result);
+        }
         return hanShowResult.isSuccess();
 
     }

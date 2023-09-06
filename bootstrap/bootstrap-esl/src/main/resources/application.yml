@@ -1,6 +1,8 @@
 server:
   port: 8082
 spring:
+  application:
+    name: bootstrap-esl
   datasource:
     type:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,6 +21,17 @@ spring:
     maxWaitMillis: 2000
     testOnBorrow: true
     expireTime: 600
+  cloud:
+    sentinel:
+      enabled: true
+      eager: true
+      transport:
+        dashboard: localhost:8848
+      datasource:
+        ds:
+          zk:
+            server-addr: localhost:2181
+
 logging:
   config: classpath:logback-spring.xml
 log:

@@ -1,5 +1,9 @@
 package com.kbslan.esl.service.http;
 
+import com.alibaba.csp.sentinel.adapter.okhttp.SentinelOkHttpConfig;
+import com.alibaba.csp.sentinel.adapter.okhttp.SentinelOkHttpInterceptor;
+import com.alibaba.csp.sentinel.adapter.okhttp.extractor.DefaultOkHttpResourceExtractor;
+import com.alibaba.csp.sentinel.adapter.okhttp.fallback.DefaultOkHttpFallback;
 import com.alibaba.fastjson.JSON;
 import okhttp3.*;
 import org.apache.commons.collections4.MapUtils;
@@ -225,8 +229,15 @@ public class HttpComponent implements InitializingBean {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(connectTimeout, TimeUnit.MILLISECONDS)
                 .readTimeout(readTime, TimeUnit.MILLISECONDS)
-                .writeTimeout(writeTime, TimeUnit.MILLISECONDS);
-        builder.interceptors().add(new Retry(retry));
+                .writeTimeout(writeTime, TimeUnit.MILLISECONDS)
+                .addInterceptor(new Retry(retry))
+//                .addInterceptor(new SentinelOkHttpInterceptor(new SentinelOkHttpConfig((request, connection) -> {
+//                    String url = request.url().toString();
+//                    return request.method() + ":" + url;
+//                }, new DefaultOkHttpFallback())))
+//                .addInterceptor(new SentinelOkHttpInterceptor(new SentinelOkHttpConfig(new MyOkHttpResourceExtractor(), new DefaultOkHttpFallback())))
+                .addInterceptor(new SentinelOkHttpInterceptor(new SentinelOkHttpConfig(new DefaultOkHttpResourceExtractor(), new DefaultOkHttpFallback())))
+                ;
         client = builder.build();
 
         OkHttpClient.Builder ignoreBuilder =new OkHttpClient.Builder()

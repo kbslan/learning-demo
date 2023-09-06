@@ -176,20 +176,20 @@
         <appender-ref ref="CONSOLE"/>
     </logger>
 
-    <logger name="com.kbslan.esl.controller" level="${log.level}" additivity="${log.additivity}">
-<!--        <appender-ref ref="ASYNC_WEB_FILE"/>-->
-        <appender-ref ref="CONSOLE"/>
-    </logger>
+<!--    <logger name="com.kbslan.esl.controller" level="${log.level}" additivity="${log.additivity}">-->
+<!--&lt;!&ndash;        <appender-ref ref="ASYNC_WEB_FILE"/>&ndash;&gt;-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--    </logger>-->
 
-    <logger name="com.kbslan.esl.service" level="${log.level}" additivity="${log.additivity}">
-<!--        <appender-ref ref="ASYNC_SERVICE_FILE"/>-->
-        <appender-ref ref="CONSOLE"/>
-    </logger>
+<!--    <logger name="com.kbslan.esl.service" level="${log.level}" additivity="${log.additivity}">-->
+<!--&lt;!&ndash;        <appender-ref ref="ASYNC_SERVICE_FILE"/>&ndash;&gt;-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--    </logger>-->
 
-    <logger name="ShardingSphere-SQL" level="${log.sql.level}" additivity="false">
-<!--        <appender-ref ref="ASYNC_SQL_FILE"/>-->
-        <appender-ref ref="CONSOLE"/>
-    </logger>
+<!--    <logger name="ShardingSphere-SQL" level="${log.sql.level}" additivity="false">-->
+<!--&lt;!&ndash;        <appender-ref ref="ASYNC_SQL_FILE"/>&ndash;&gt;-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--    </logger>-->
 
 
 </configuration>
