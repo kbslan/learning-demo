@@ -1,6 +1,9 @@
 package com.kbslan.esl.service.pricetag.model;
 
 import com.kbslan.domain.enums.PriceTagDeviceSupplierEnum;
+import com.kbslan.domain.enums.PushModeEnum;
+import com.kbslan.domain.enums.PushTypeEnum;
+import com.kbslan.domain.enums.RefreshTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +48,26 @@ public class PriceTagRefreshParams {
      * 唯一请求链路ID
      */
     private String sid;
+    /**
+     * 推送模式
+     */
+    private PushModeEnum pushMode = PushModeEnum.API;
+    /**
+     * 推送类型
+     */
+    private PushTypeEnum pushType = PushTypeEnum.INCREMENT;
+    /**
+     * 刷新类型
+     */
+    private RefreshTypeEnum refreshType = RefreshTypeEnum.AUTO;
+    /**
+     * 用户ID
+     */
+    private Long userId = 1L;
+    /**
+     * 用户名
+     */
+    private String userName = "admin";
 
     /**
      * 刷新商品sku列表

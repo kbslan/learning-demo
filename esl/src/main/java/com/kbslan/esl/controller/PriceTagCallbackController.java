@@ -80,11 +80,9 @@ public class PriceTagCallbackController {
         String json = parseRequest(request);
         PriceTagDeviceSupplierEnum deviceSupplier = parseDeviceSupplier(request);
         log.debug("接收到价签回调数据 deviceSupplier={} json={}", deviceSupplier, json);
-        //TODO 发生MQ消息
+        //TODO 发送MQ消息
 
         //此处先模拟调用 start
-        priceTagServiceFactory.create(deviceSupplier).callback(json);
-
         PriceTagCallbackMessage message = new PriceTagCallbackMessage();
         message.setDeviceSupplier(deviceSupplier);
         message.setBody(json);

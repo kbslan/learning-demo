@@ -7,6 +7,7 @@ import com.kbslan.esl.service.http.HttpComponent;
 import com.kbslan.esl.service.pricetag.model.PriceTagParams;
 import com.kbslan.esl.service.pricetag.model.PriceTagRefreshParams;
 import com.kbslan.esl.service.pricetag.model.StationParams;
+import com.kbslan.esl.service.pricetag.model.data.PriceTagHolder;
 import com.kbslan.esl.service.pricetag.model.hanshow.AllotBaseStation;
 import com.kbslan.esl.service.pricetag.model.hanshow.HanShowResult;
 import com.kbslan.esl.service.pricetag.model.hanshow.PriceTagScreen;
@@ -103,7 +104,7 @@ public class HanShowApiService {
         return hanShowResult.isSuccess();
     }
 
-    public boolean refresh(PriceTagRefreshParams params, DeviceEslApiModel deviceEslApiModel) throws IOException {
+    public boolean refresh(PriceTagRefreshParams params, List<PriceTagHolder> priceTagHolderList, DeviceEslApiModel deviceEslApiModel) throws IOException {
         //{user}/esls/{id}/screen PUT 更新指定价签屏幕
         String refreshUrl = deviceEslApiModel.getRefreshPriceTagUrl().buildAndExpand(params.getStoreId(), params.getPriceTagId()).toString();
 
@@ -118,7 +119,7 @@ public class HanShowApiService {
 
         //TODO 模版和数据填充
         screen.setName("");
-        screen.setArgs(Collections.emptyMap());
+        screen.setArgs(priceTagHolderList.get(0));
 
         String result =  httpComponent.put(refreshUrl, JSON.toJSONString(screen));
         HanShowResult<Void> hanShowResult = JSON.parseObject(result, new TypeReference<HanShowResult<Void>>() {

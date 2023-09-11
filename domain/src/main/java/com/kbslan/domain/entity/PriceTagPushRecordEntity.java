@@ -46,21 +46,25 @@ public class PriceTagPushRecordEntity implements Serializable {
 
     /**
      * 推送模式
+     * @see com.kbslan.domain.enums.PushModeEnum
      */
     private Integer pushMode;
 
     /**
      * 推送类型
+     * @see com.kbslan.domain.enums.PushTypeEnum
      */
     private Integer pushType;
 
     /**
      * 触发类型 1：自动， 2：手动，3：补偿
+     * @see com.kbslan.domain.enums.RefreshTypeEnum
      */
     private Integer refreshType;
 
     /**
      * 状态 0：待下发，1：下发中，2：下发成功，3：下发失败，4：补发成功
+     * @see com.kbslan.domain.enums.PushStatusEnum
      */
     private Integer status;
 
