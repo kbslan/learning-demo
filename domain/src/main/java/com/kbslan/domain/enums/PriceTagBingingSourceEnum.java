@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 public enum PriceTagBingingSourceEnum {
-    PRICE_TAG_APP("PRICE-TAG-APP", "价签OS APP"),
-    DISPLAY_MQ("DISPLAY-MQ", "陈列系统MQ"),
+    PRICE_TAG("price_tag", "价签系统"),
+    DISPLAY("display", "陈列系统"),
     ;
 
     private final String code;

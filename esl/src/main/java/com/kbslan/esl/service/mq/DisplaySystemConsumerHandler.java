@@ -69,7 +69,7 @@ public class DisplaySystemConsumerHandler /* extends AbsMessageHandler<DisplaySy
                 request.setDeviceSupplier(deviceSupplier.getCode());
                 request.setUserId(-1L);
                 request.setUserName("displaySystem");
-                request.setBingingSource(PriceTagBingingSourceEnum.DISPLAY_MQ.getCode());
+                request.setBingingSource(PriceTagBingingSourceEnum.DISPLAY.getCode());
                 request.setNeedPush(true);
                 request.setOriginPriceTagId(data.getEslId());
                 request.setSkuIds(Collections.singletonList(data.getSkuId()));

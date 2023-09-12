@@ -48,6 +48,6 @@ public class CommonParams {
     /**
      * 操作来源
      */
-    private PriceTagBingingSourceEnum bingingSource = PriceTagBingingSourceEnum.PRICE_TAG_APP;
+    private PriceTagBingingSourceEnum bingingSource = PriceTagBingingSourceEnum.PRICE_TAG;
 
 }
