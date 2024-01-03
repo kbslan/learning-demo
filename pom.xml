@@ -21,14 +21,15 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.8</lombok.version>
-
+        <druid.version>1.1.21</druid.version>
         <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.7.RELEASE</spring-cloud-alibaba.version>
         <sentinel.version>1.8.6</sentinel.version>
-
-        <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+        <sharding-jdbc-stater.version>4.1.0</sharding-jdbc-stater.version>
+<!--        <mybatis-plus.version>3.5.4.1</mybatis-plus.version>-->
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <fastjson.version>2.0.39</fastjson.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-lang3.version>3.10</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <logback.version>1.2.3</logback.version>
         <okhttp3.version>3.14.9</okhttp3.version>
@@ -151,7 +152,22 @@
                 <artifactId>sentinel-datasource-zookeeper</artifactId>
                 <version>${sentinel.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>commons-collections4</artifactId>
+                        <groupId>org.apache.commons</groupId>
+                    </exclusion>
+                </exclusions>
+                <version>${sharding-jdbc-stater.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

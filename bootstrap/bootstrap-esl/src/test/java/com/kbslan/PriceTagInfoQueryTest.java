@@ -53,12 +53,15 @@ public class PriceTagInfoQueryTest {
                 .eq(StringUtils.isNotBlank(query.getPriceTagId()), PriceTagInfoEntity::getPriceTagId, query.getPriceTagId())
                 .eq(Objects.nonNull(query.getYn()), PriceTagInfoEntity::getYn, query.getYn());
         if (CollectionUtils.isNotEmpty(query.getSkuIds())) {
-            queryWrapper.and(true, subQuery -> {
+            queryWrapper.and(subQuery -> {
                 List<Long> skuIds = query.getSkuIds();
                 for (int i = 0; i < skuIds.size(); i++){
                     Long skuId = skuIds.get(i);
-                    subQuery.apply(i == 0, "JSON_CONTAINS(ext_json->'$.skuIds', json_array({0}))", skuId);
-                    subQuery.or(i > 0,wrapper -> wrapper.apply("JSON_CONTAINS(ext_json->'$.skuIds', json_array({0}))", skuId));
+                    if (i == 0) {
+                        subQuery.apply("JSON_CONTAINS(ext_json, json_array({0}), '$.skuIds')", skuId);
+                    } else {
+                        subQuery.or(wrapper -> wrapper.apply("JSON_CONTAINS(ext_json, json_array({0}), '$.skuIds')", skuId));
+                    }
                 }
             });
         }
