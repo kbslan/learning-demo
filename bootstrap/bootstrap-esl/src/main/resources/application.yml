@@ -23,10 +23,11 @@ spring:
     expireTime: 600
   cloud:
     sentinel:
-      enabled: true
+      enabled: false
       eager: true
       transport:
-        dashboard: localhost:8848
+#      https://rta-offlinepush-test.rtacdn-os.com/msg-rtaofflinepushtest/sentinel-dashboard-1.8.6.jar
+#        dashboard: localhost:8848
       datasource:
         ds:
           zk:
@@ -39,3 +40,9 @@ log:
   level: INFO
   sql:
     level: INFO
+
+# Mybatis Plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
