@@ -1,0 +1,2349 @@
+{
+    "pageNum": "1",
+    "pageSize": "30",
+    "total": "100",
+    "pages": "4",
+    "data": [{
+        "issue": "2023109",
+        "openTime": "2023-09-19",
+        "frontWinningNum": "06 08 10 13 16 28",
+        "backWinningNum": "13",
+        "seqFrontWinningNum": "06 16 28 13 08 10",
+        "seqBackWinningNum": "13",
+        "saleMoney": "372318810",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2303849540",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "3",
+                "awardMoney": "10000000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "221",
+                "awardMoney": "115585",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1348",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "71622",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1405642",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "9566800",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023108",
+        "openTime": "2023-09-17",
+        "frontWinningNum": "01 03 06 08 18 24",
+        "backWinningNum": "09",
+        "seqFrontWinningNum": "06 03 24 18 08 01",
+        "seqBackWinningNum": "09",
+        "saleMoney": "414140392",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2257216493",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "12",
+                "awardMoney": "6002668",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "109",
+                "awardMoney": "137981",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "2589",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "109256",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1826668",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "18976757",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023107",
+        "openTime": "2023-09-14",
+        "frontWinningNum": "03 07 18 25 29 33",
+        "backWinningNum": "14",
+        "seqFrontWinningNum": "07 33 29 18 25 03",
+        "seqBackWinningNum": "14",
+        "saleMoney": "377747376",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2284128424",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "6",
+                "awardMoney": "7890900",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "194",
+                "awardMoney": "111761",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1685",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "84502",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1479496",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "12323767",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023106",
+        "openTime": "2023-09-12",
+        "frontWinningNum": "07 09 10 20 22 24",
+        "backWinningNum": "07",
+        "seqFrontWinningNum": "24 09 10 07 20 22",
+        "seqBackWinningNum": "07",
+        "saleMoney": "375981944",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2266428564",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "4",
+                "awardMoney": "8594088",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "140",
+                "awardMoney": "128360",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "2311",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "98329",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1674053",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "13802009",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023105",
+        "openTime": "2023-09-10",
+        "frontWinningNum": "01 03 05 26 30 32",
+        "backWinningNum": "16",
+        "seqFrontWinningNum": "01 30 32 05 03 26",
+        "seqBackWinningNum": "16",
+        "saleMoney": "405852212",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2246893587",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "3",
+                "awardMoney": "10000000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "77",
+                "awardMoney": "404257",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "964",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "55080",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1163315",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "9763015",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023104",
+        "openTime": "2023-09-07",
+        "frontWinningNum": "10 19 23 25 30 31",
+        "backWinningNum": "12",
+        "seqFrontWinningNum": "30 23 25 19 31 10",
+        "seqBackWinningNum": "12",
+        "saleMoney": "371735912",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2183510069",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "2",
+                "awardMoney": "10000000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "76",
+                "awardMoney": "311447",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1616",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "73618",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1401010",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "10777766",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023103",
+        "openTime": "2023-09-05",
+        "frontWinningNum": "05 06 13 24 25 29",
+        "backWinningNum": "15",
+        "seqFrontWinningNum": "06 05 13 25 29 24",
+        "seqBackWinningNum": "15",
+        "saleMoney": "370559376",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2132500020",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "3",
+                "awardMoney": "10000000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "103",
+                "awardMoney": "281418",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "917",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "57934",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1212034",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "7834347",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023102",
+        "openTime": "2023-09-03",
+        "frontWinningNum": "01 09 10 13 21 28",
+        "backWinningNum": "10",
+        "seqFrontWinningNum": "21 10 09 28 01 13",
+        "seqBackWinningNum": "10",
+        "saleMoney": "408618502",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2075541857",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "10",
+                "awardMoney": "6615741",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "98",
+                "awardMoney": "206089",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "3131",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "89259",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1634397",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "15169449",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023101",
+        "openTime": "2023-08-31",
+        "frontWinningNum": "01 05 09 15 18 26",
+        "backWinningNum": "04",
+        "seqFrontWinningNum": "01 18 15 05 09 26",
+        "seqBackWinningNum": "04",
+        "saleMoney": "370629284",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2081108979",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "4",
+                "awardMoney": "10000000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "164",
+                "awardMoney": "182582",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "962",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "60139",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1237291",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "6909501",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023100",
+        "openTime": "2023-08-29",
+        "frontWinningNum": "05 06 12 15 23 25",
+        "backWinningNum": "04",
+        "seqFrontWinningNum": "12 15 05 23 06 25",
+        "seqBackWinningNum": "04",
+        "saleMoney": "359711540",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2031278380",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "19",
+                "awardMoney": "5762908",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "243",
+                "awardMoney": "74564",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "2824",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "117607",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1788007",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "10781773",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023099",
+        "openTime": "2023-08-27",
+        "frontWinningNum": "09 11 14 19 27 33",
+        "backWinningNum": "05",
+        "seqFrontWinningNum": "09 33 19 11 27 14",
+        "seqBackWinningNum": "05",
+        "saleMoney": "390452378",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2086416405",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "18",
+                "awardMoney": "6174885",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "82",
+                "awardMoney": "322377",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1572",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "68358",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1319933",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "10799007",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023098",
+        "openTime": "2023-08-24",
+        "frontWinningNum": "02 10 11 14 21 27",
+        "backWinningNum": "11",
+        "seqFrontWinningNum": "14 11 10 27 02 21",
+        "seqBackWinningNum": "11",
+        "saleMoney": "362199042",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2118259570",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "13",
+                "awardMoney": "6522117",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "266",
+                "awardMoney": "92986",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1634",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "79485",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1454255",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "8639674",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023097",
+        "openTime": "2023-08-22",
+        "frontWinningNum": "01 09 14 19 29 30",
+        "backWinningNum": "15",
+        "seqFrontWinningNum": "01 19 29 14 09 30",
+        "seqBackWinningNum": "15",
+        "saleMoney": "357725994",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2128843885",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "13",
+                "awardMoney": "6311615",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "225",
+                "awardMoney": "94727",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "2256",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "108823",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1767679",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "8764273",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023096",
+        "openTime": "2023-08-20",
+        "frontWinningNum": "08 11 18 26 31 32",
+        "backWinningNum": "15",
+        "seqFrontWinningNum": "26 32 08 18 11 31",
+        "seqBackWinningNum": "15",
+        "saleMoney": "387715200",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2146953645",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "8",
+                "awardMoney": "7789981",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "125",
+                "awardMoney": "223198",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1156",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "67955",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1302927",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "9658580",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023095",
+        "openTime": "2023-08-17",
+        "frontWinningNum": "03 08 16 17 22 26",
+        "backWinningNum": "11",
+        "seqFrontWinningNum": "08 16 22 17 03 26",
+        "seqBackWinningNum": "11",
+        "saleMoney": "357870744",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2125574043",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "22",
+                "awardMoney": "5751004",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "342",
+                "awardMoney": "60387",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "2162",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "109563",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1818621",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "9232272",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023094",
+        "openTime": "2023-08-15",
+        "frontWinningNum": "06 10 12 14 30 31",
+        "backWinningNum": "12",
+        "seqFrontWinningNum": "30 06 12 14 10 31",
+        "seqBackWinningNum": "12",
+        "saleMoney": "353863692",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2190138271",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "13",
+                "awardMoney": "6482678",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "62",
+                "awardMoney": "388605",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1054",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "57805",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1154774",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "10149675",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023093",
+        "openTime": "2023-08-13",
+        "frontWinningNum": "10 21 24 25 27 32",
+        "backWinningNum": "07",
+        "seqFrontWinningNum": "32 25 21 10 24 27",
+        "seqBackWinningNum": "07",
+        "saleMoney": "382160878",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2202132520",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "2",
+                "awardMoney": "10000000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "55",
+                "awardMoney": "500947",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "838",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "47779",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1029761",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "10936581",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023092",
+        "openTime": "2023-08-10",
+        "frontWinningNum": "03 12 24 25 32 33",
+        "backWinningNum": "13",
+        "seqFrontWinningNum": "24 12 33 03 32 25",
+        "seqBackWinningNum": "13",
+        "saleMoney": "357345052",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2139476134",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "6",
+                "awardMoney": "8563809",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "98",
+                "awardMoney": "272740",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1075",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "63928",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1253157",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "7928526",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023091",
+        "openTime": "2023-08-08",
+        "frontWinningNum": "16 20 22 26 30 32",
+        "backWinningNum": "16",
+        "seqFrontWinningNum": "32 26 20 30 22 16",
+        "seqBackWinningNum": "16",
+        "saleMoney": "358375594",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2110673283",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "8",
+                "awardMoney": "7716754",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "69",
+                "awardMoney": "393732",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1010",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "50480",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1012117",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "8737338",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023090",
+        "openTime": "2023-08-06",
+        "frontWinningNum": "01 02 09 26 30 31",
+        "backWinningNum": "07",
+        "seqFrontWinningNum": "26 30 01 09 31 02",
+        "seqBackWinningNum": "07",
+        "saleMoney": "384947064",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2090904684",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "4",
+                "awardMoney": "9305795",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "97",
+                "awardMoney": "221948",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1268",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "75044",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1492374",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "13754324",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023089",
+        "openTime": "2023-08-03",
+        "frontWinningNum": "08 13 15 27 28 31",
+        "backWinningNum": "11",
+        "seqFrontWinningNum": "13 27 31 28 08 15",
+        "seqBackWinningNum": "11",
+        "saleMoney": "354904960",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2063540939",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "18",
+                "awardMoney": "5770016",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "122",
+                "awardMoney": "142011",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1722",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "84839",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1438561",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "13616505",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023088",
+        "openTime": "2023-08-01",
+        "frontWinningNum": "01 14 18 26 31 33",
+        "backWinningNum": "05",
+        "seqFrontWinningNum": "18 01 14 33 26 31",
+        "seqBackWinningNum": "05",
+        "saleMoney": "350096092",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2115425117",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "11",
+                "awardMoney": "6088495",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "98",
+                "awardMoney": "152722",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1326",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "70806",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1270407",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "16167318",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023087",
+        "openTime": "2023-07-30",
+        "frontWinningNum": "02 09 15 17 28 33",
+        "backWinningNum": "01",
+        "seqFrontWinningNum": "02 33 15 09 17 28",
+        "seqBackWinningNum": "01",
+        "saleMoney": "381153750",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2137498144",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "9",
+                "awardMoney": "7457024",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "158",
+                "awardMoney": "174946",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1754",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "74057",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1480314",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "8264542",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023086",
+        "openTime": "2023-07-27",
+        "frontWinningNum": "08 09 10 22 26 32",
+        "backWinningNum": "12",
+        "seqFrontWinningNum": "26 09 10 32 08 22",
+        "seqBackWinningNum": "12",
+        "saleMoney": "357436118",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2121686796",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "11",
+                "awardMoney": "6685067",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "185",
+                "awardMoney": "125241",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "3031",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "83557",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1571421",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "8189276",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023085",
+        "openTime": "2023-07-25",
+        "frontWinningNum": "11 18 23 24 31 33",
+        "backWinningNum": "13",
+        "seqFrontWinningNum": "23 24 18 31 33 11",
+        "seqBackWinningNum": "13",
+        "saleMoney": "356240472",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2125713507",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "6",
+                "awardMoney": "8156360",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "97",
+                "awardMoney": "244048",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1403",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "71640",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1352674",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "9560653",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023084",
+        "openTime": "2023-07-23",
+        "frontWinningNum": "09 13 14 17 19 27",
+        "backWinningNum": "03",
+        "seqFrontWinningNum": "13 19 09 14 17 27",
+        "seqBackWinningNum": "03",
+        "saleMoney": "386580634",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2103633553",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "5",
+                "awardMoney": "9140598",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "99",
+                "awardMoney": "261401",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1274",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "73182",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1429863",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "10630502",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023083",
+        "openTime": "2023-07-20",
+        "frontWinningNum": "07 10 12 16 17 30",
+        "backWinningNum": "12",
+        "seqFrontWinningNum": "10 12 30 16 07 17",
+        "seqBackWinningNum": "12",
+        "saleMoney": "360195880",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2071700320",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "5",
+                "awardMoney": "7947836",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "141",
+                "awardMoney": "130666",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1871",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "91206",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1641413",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "12506349",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023082",
+        "openTime": "2023-07-18",
+        "frontWinningNum": "04 18 19 24 27 30",
+        "backWinningNum": "16",
+        "seqFrontWinningNum": "30 24 04 18 27 19",
+        "seqBackWinningNum": "16",
+        "saleMoney": "355121956",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2056167572",
+        "week": "\u661f\u671f\u4e8c",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "13",
+                "awardMoney": "6130757",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "144",
+                "awardMoney": "127602",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1654",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "83863",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1490226",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "12774735",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023081",
+        "openTime": "2023-07-16",
+        "frontWinningNum": "01 11 15 16 22 31",
+        "backWinningNum": "15",
+        "seqFrontWinningNum": "11 31 15 01 16 22",
+        "seqBackWinningNum": "15",
+        "saleMoney": "387109286",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2080743000",
+        "week": "\u661f\u671f\u65e5",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "6",
+                "awardMoney": "8525084",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "53",
+                "awardMoney": "498832",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "974",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "59067",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1137089",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "11564948",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }, {
+        "issue": "2023080",
+        "openTime": "2023-07-13",
+        "frontWinningNum": "01 02 04 09 25 31",
+        "backWinningNum": "08",
+        "seqFrontWinningNum": "31 04 02 25 01 09",
+        "seqBackWinningNum": "08",
+        "saleMoney": "363086950",
+        "r9SaleMoney": "",
+        "prizePoolMoney": "2052579114",
+        "week": "\u661f\u671f\u56db",
+        "winnerDetails": [{
+            "awardEtc": "1",
+            "baseBetWinner": {
+                "remark": "\u4e00\u7b49\u5956",
+                "awardNum": "9",
+                "awardMoney": "7025698",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "2",
+            "baseBetWinner": {
+                "remark": "\u4e8c\u7b49\u5956",
+                "awardNum": "66",
+                "awardMoney": "345289",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "3",
+            "baseBetWinner": {
+                "remark": "\u4e09\u7b49\u5956",
+                "awardNum": "1157",
+                "awardMoney": "3000",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "4",
+            "baseBetWinner": {
+                "remark": "\u56db\u7b49\u5956",
+                "awardNum": "62549",
+                "awardMoney": "200",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "5",
+            "baseBetWinner": {
+                "remark": "\u4e94\u7b49\u5956",
+                "awardNum": "1223795",
+                "awardMoney": "10",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }, {
+            "awardEtc": "6",
+            "baseBetWinner": {
+                "remark": "\u516d\u7b49\u5956",
+                "awardNum": "11707483",
+                "awardMoney": "5",
+                "totalMoney": ""
+            },
+            "addToBetWinner": "",
+            "addToBetWinner2": "",
+            "addToBetWinner3": ""
+        }]
+    }],
+    "resCode": "000000",
+    "message": "\u6210\u529f"
+}
