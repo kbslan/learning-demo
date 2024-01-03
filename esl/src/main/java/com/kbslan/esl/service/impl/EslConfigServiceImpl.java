@@ -192,4 +192,11 @@ public class EslConfigServiceImpl implements EslConfigService {
         return Objects.nonNull(sysConfig) && Boolean.parseBoolean(sysConfig.getConfigValue());
     }
 
+    public static void main(String[] args) {
+        String configValue = "{\"HanShow\":{\"host\":\"http://10.16.245.20\",\"port\":9000,\"healthUri\":\"/api3/runninfo\",\"needLogin\":false,\"loginUri\":\"\",\"userName\":\"\",\"password\":\"\",\"callbackUrl\":\"https://testnewpricetag-partner.rta-os.com/device/callback\"}}";
+        Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel> configModelMap = com.alibaba.fastjson.JSON.parseObject(configValue, new com.alibaba.fastjson.TypeReference<Map<PriceTagDeviceSupplierEnum, EslServiceConfigModel>>() {
+        });
+        System.out.println(configModelMap);
+    }
+
 }

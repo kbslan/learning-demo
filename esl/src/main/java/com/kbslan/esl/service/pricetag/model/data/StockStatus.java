@@ -1,6 +1,5 @@
 package com.kbslan.esl.service.pricetag.model.data;
 
-import org.ifinalframework.core.IEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum StockStatus implements IEnum<Integer> {
+public enum StockStatus {
     IN_STOCK(1, "有货"),
     OUT_STOCK(0, "无货");
 

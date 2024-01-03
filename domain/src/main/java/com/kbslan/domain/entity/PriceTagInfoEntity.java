@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +24,7 @@ import java.util.Objects;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("price_tag_info")
+@TableName(value = "price_tag_info", autoResultMap = true)
 public class PriceTagInfoEntity implements Serializable {
 
     private static final long serialVersionUID = 6655163075253198155L;
@@ -45,12 +45,14 @@ public class PriceTagInfoEntity implements Serializable {
     private Long storeId;
 
     /**
-     * 设备厂商 {@see PriceTagDeviceSupplierEnum}
+     * 设备厂商
+     *
      */
     private String deviceSupplier;
 
     /**
-     * 设备类型 {@see PriceTagDeviceTypeEnum}
+     * 设备类型
+     *
      */
     private String deviceType;
 
@@ -65,14 +67,15 @@ public class PriceTagInfoEntity implements Serializable {
     private String priceTagId;
 
     /**
-     * 绑定来源 {@see PriceTagBingingSourceEnum}
+     * 绑定来源
+     *
      */
-    private String bingingSource;
+    private String bindingSource;
 
     /**
-     * 价签能量值
+     * 价签电量
      */
-    private String rfPower;
+    private String battery;
 
     /**
      * 屏幕尺寸
@@ -100,7 +103,8 @@ public class PriceTagInfoEntity implements Serializable {
     private LocalDateTime lastHeartbeat;
 
     /**
-     * 1：绑定，0：解绑 {@see YNEum}
+     * 1：绑定，0：解绑
+     *
      */
     private Integer yn;
 
@@ -141,13 +145,23 @@ public class PriceTagInfoEntity implements Serializable {
     private LocalDateTime modified;
 
     /**
+     * 程序刷新数据时间
+     */
+    private LocalDateTime scheduleTime;
+    /**
+     * 是否在线
+     */
+    @TableField(exist = false)
+    private Boolean online;
+
+    /**
      * 获取推送的商品skuId列表
      *
      * @return skuId列表
      */
     public List<Long> getSkuIds() {
         if (Objects.isNull(this.extJson)) {
-            return Collections.emptyList();
+            return new ArrayList<>(0);
         }
         return this.extJson.getSkuIds();
     }

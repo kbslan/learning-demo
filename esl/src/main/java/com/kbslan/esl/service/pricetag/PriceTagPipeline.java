@@ -123,9 +123,9 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagParams>,
         //是否需要检查绑定来源
         boolean needCheckBindingSource = eslConfigService.isNeedCheckBindingSource(params.getStoreId());
         if (needCheckBindingSource && Objects.nonNull(priceTagInfoEntity)
-                && !Objects.equals(priceTagInfoEntity.getBingingSource(), params.getBingingSource().getCode())) {
+                && !Objects.equals(priceTagInfoEntity.getBindingSource(), params.getBingingSource().getCode())) {
             //绑定来源不是一致
-            throw new IllegalArgumentException(String.format(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE, priceTagInfoEntity.getBingingSource()));
+            throw new IllegalArgumentException(String.format(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE, priceTagInfoEntity.getBindingSource()));
         }
 
         //查询厂商配置
@@ -207,9 +207,9 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagParams>,
 
         //是否需要检查绑定来源
         boolean needCheckBindingSource = eslConfigService.isNeedCheckBindingSource(params.getStoreId());
-        if (needCheckBindingSource && !Objects.equals(priceTagInfoEntity.getBingingSource(), params.getBingingSource().getCode())) {
+        if (needCheckBindingSource && !Objects.equals(priceTagInfoEntity.getBindingSource(), params.getBingingSource().getCode())) {
             //绑定来源不是一致
-            throw new IllegalArgumentException(String.format(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE, priceTagInfoEntity.getBingingSource()));
+            throw new IllegalArgumentException(String.format(EslNoticeMessage.PRICE_TAG_BEEN_BOUNDED_BY_OTHER_SOURCE, priceTagInfoEntity.getBindingSource()));
         }
 
         //查询厂商配置
@@ -272,7 +272,7 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagParams>,
      */
     protected void updateUnBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
         priceTagInfoEntity.setYn(YNEnum.NO.getCode());
-        priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
+        priceTagInfoEntity.setBindingSource(params.getBingingSource().getCode());
         priceTagInfoEntity.setModifierId(params.getUserId());
         priceTagInfoEntity.setModifierName(params.getUserName());
         priceTagInfoEntity.setModified(LocalDateTime.now());
@@ -287,7 +287,7 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagParams>,
     protected void updateBindRecord(PriceTagParams params, PriceTagInfoEntity priceTagInfoEntity) {
         priceTagInfoEntity.setYn(YNEnum.YES.getCode());
         priceTagInfoEntity.setSkuIds(params.getSkuIds());
-        priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
+        priceTagInfoEntity.setBindingSource(params.getBingingSource().getCode());
         priceTagInfoEntity.setModifierId(params.getUserId());
         priceTagInfoEntity.setModifierName(params.getUserName());
         priceTagInfoEntity.setModified(LocalDateTime.now());
@@ -307,7 +307,7 @@ public abstract class PriceTagPipeline implements Predicate<PriceTagParams>,
         priceTagInfoEntity.setDeviceType(params.getDeviceType().getCode());
         priceTagInfoEntity.setOriginPriceTagId(params.getOriginPriceTagId());
         priceTagInfoEntity.setPriceTagId(params.getPriceTagId());
-        priceTagInfoEntity.setBingingSource(params.getBingingSource().getCode());
+        priceTagInfoEntity.setBindingSource(params.getBingingSource().getCode());
         //TODO 补全其他字段
 //        priceTagInfoEntity.setRfPower();
 //        priceTagInfoEntity.setScreenSize();

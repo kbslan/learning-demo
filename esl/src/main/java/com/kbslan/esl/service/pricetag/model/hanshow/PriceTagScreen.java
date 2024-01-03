@@ -3,7 +3,6 @@ package com.kbslan.esl.service.pricetag.model.hanshow;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Getter;
 import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 

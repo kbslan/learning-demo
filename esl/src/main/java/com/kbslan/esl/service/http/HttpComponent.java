@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSON;
 import okhttp3.*;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -267,7 +266,6 @@ public class HttpComponent implements InitializingBean {
             this.maxRetry = maxRetry;
         }
 
-        @NotNull
         @Override
         public Response intercept(Chain chain) throws IOException {
             int retryNum = 1;

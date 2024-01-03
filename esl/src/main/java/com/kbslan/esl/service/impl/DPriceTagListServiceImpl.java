@@ -6,6 +6,7 @@ import com.kbslan.domain.entity.TemplateLayoutEntity;
 import com.kbslan.domain.mapper.DPriceTagListMapper;
 import com.kbslan.domain.model.PriceTagListVO;
 import com.kbslan.esl.service.DPriceTagListService;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 2023/9/11 13:43
  */
+@Service
 public class DPriceTagListServiceImpl extends ServiceImpl<DPriceTagListMapper, DPriceTagListEntity> implements DPriceTagListService {
     @Override
     public List<PriceTagListVO> toVOList(List<DPriceTagListEntity> records, long vendorId, long storeId, boolean exportXls, boolean hitTemp, boolean printAll, TemplateLayoutEntity templateLayout, boolean syncWait) {

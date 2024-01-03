@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * <p>
  *     电子价签查询
@@ -50,4 +52,8 @@ public class PriceTagInfoQuery extends PageRequest {
      * 状态
      */
     private Integer yn;
+    /**
+     * skuIds
+     */
+    private List<Long> skuIds;
 }

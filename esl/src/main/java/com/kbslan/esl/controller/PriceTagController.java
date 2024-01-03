@@ -13,12 +13,14 @@ import com.kbslan.esl.vo.request.PriceTagInfoQuery;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRefreshRequest;
 import com.kbslan.esl.vo.request.pricetag.PriceTagRequest;
 import com.kbslan.esl.vo.response.DataResponseJson;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.Objects;
 
 /**
@@ -52,17 +54,22 @@ public class PriceTagController {
      */
     @PostMapping("/page")
     public DataResponseJson page(PriceTagInfoQuery query) {
-
+        query.setVendorId(5L);
+        query.setStoreId(21L);
+        query.setDeviceSupplier("HanShow");
+        query.setSkuIds(Collections.singletonList(104833063L));
         Page<PriceTagInfoEntity> page = priceTagInfoService.page(
                 new Page<>(query.getCurrent(), query.getSize()),
                 Wrappers.<PriceTagInfoEntity>lambdaQuery()
                         .eq(PriceTagInfoEntity::getVendorId, query.getVendorId())
                         .eq(PriceTagInfoEntity::getStoreId, query.getStoreId())
                         .eq(StringUtils.isNotBlank(query.getDeviceSupplier()), PriceTagInfoEntity::getDeviceSupplier, query.getDeviceSupplier())
-                        .eq(StringUtils.isNotBlank(query.getBingingSource()), PriceTagInfoEntity::getBingingSource, query.getBingingSource())
+                        .eq(StringUtils.isNotBlank(query.getBingingSource()), PriceTagInfoEntity::getBindingSource, query.getBingingSource())
                         .eq(StringUtils.isNotBlank(query.getOriginPriceTagId()), PriceTagInfoEntity::getOriginPriceTagId, query.getOriginPriceTagId())
                         .eq(StringUtils.isNotBlank(query.getPriceTagId()), PriceTagInfoEntity::getPriceTagId, query.getPriceTagId())
-                        .eq(Objects.nonNull(query.getYn()), PriceTagInfoEntity::getYn, query.getYn()));
+                        .eq(Objects.nonNull(query.getYn()), PriceTagInfoEntity::getYn, query.getYn())
+                        .apply(CollectionUtils.isNotEmpty(query.getSkuIds()), "json_contains(ext_json, json_array({0}))", StringUtils.join(query.getSkuIds(), ","))
+        );
         return DataResponseJson.ok(page);
     }
 
